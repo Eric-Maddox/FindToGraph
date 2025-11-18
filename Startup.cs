@@ -1,9 +1,10 @@
 using EPiServer.Cms.Shell;
 using EPiServer.Cms.UI.AspNetIdentity;
+using EPiServer.DependencyInjection;
+using EPiServer.Find.Cms;   
 using EPiServer.Scheduler;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
-using EPiServer.Find.Cms;   
 
 namespace FindToGraph;
 
@@ -31,6 +32,9 @@ public class Startup
             .AddAdminUserRegistration()
             .AddFind()
             .AddEmbeddedLocalization<Startup>();
+
+        services.AddContentDeliveryApi();
+        services.AddContentGraph();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
