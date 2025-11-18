@@ -1,0 +1,25 @@
+@model FindToGraph.Models.SearchPage
+
+<h2>Search Page</h2>
+
+<form method="get">
+    <input type="text" name="q" placeholder="Enter search term..." value="@ViewBag.Query" />
+    <button type="submit">Search</button>
+</form>
+
+<hr />
+
+<h3>Search Results</h3>
+@if (ViewBag.Results != null && ((List<string>)ViewBag.Results).Count > 0)
+{
+    <ul id="search-results">
+        @foreach (var result in (List<string>)ViewBag.Results)
+        {
+            <li>@result</li>
+        }
+    </ul>
+}
+else if (!string.IsNullOrWhiteSpace(ViewBag.Query))
+{
+    <p>No results found for '@ViewBag.Query'.</p>
+}

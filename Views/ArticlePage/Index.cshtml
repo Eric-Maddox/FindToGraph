@@ -1,0 +1,12 @@
+@model FindToGraph.Models.ArticlePage
+
+<h2>Article Page</h2>
+
+@if (Model.Body != null)
+{
+ @Html.Raw(Model.Body.ToHtmlString())
+}
+else
+{
+ <p>No content available.</p>
+}
