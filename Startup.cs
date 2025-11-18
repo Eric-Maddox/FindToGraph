@@ -3,6 +3,7 @@ using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Scheduler;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
+using EPiServer.Find.Cms;   
 
 namespace FindToGraph;
 
@@ -28,6 +29,7 @@ public class Startup
             .AddCmsAspNetIdentity<ApplicationUser>()
             .AddCms()
             .AddAdminUserRegistration()
+            .AddFind()
             .AddEmbeddedLocalization<Startup>();
     }
 
