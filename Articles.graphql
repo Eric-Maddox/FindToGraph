@@ -1,0 +1,9 @@
+﻿query articles($query: String) {
+  ArticlePage(where: { _fulltext: { match: $query } }) {
+    items {
+      Body {
+        html
+      }
+    }
+  }
+}

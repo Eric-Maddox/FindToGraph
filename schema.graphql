@@ -1,0 +1,1815 @@
+schema {
+  query: Query
+}
+
+type _Component implements IData & _IContent & _IComponent {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+}
+
+type _ComponentAutocomplete {
+  _metadata: IContentMetadataAutocomplete
+}
+
+type _ComponentFacet {
+  _metadata: IContentMetadataFacet
+}
+
+input _ComponentOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+  _metadata: IContentMetadataOrderByInput
+}
+
+type _ComponentOutput {
+  items: [_IComponent]
+  item: _IComponent
+  cursor: String
+  total(all: Boolean): Int
+  facets: _ComponentFacet
+  autocomplete: _ComponentAutocomplete
+}
+
+input _ComponentWhereInput {
+  _and: [_ComponentWhereInput]
+  _or: [_ComponentWhereInput]
+  _not: [_ComponentWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+  _metadata: IContentMetadataWhereInput
+}
+
+type _Content implements IData & _IContent {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+}
+
+type _ContentAutocomplete {
+  _metadata: IContentMetadataAutocomplete
+}
+
+type _ContentFacet {
+  _metadata: IContentMetadataFacet
+}
+
+input _ContentOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+  _metadata: IContentMetadataOrderByInput
+}
+
+type _ContentOutput {
+  items: [_IContent]
+  item: _IContent
+  cursor: String
+  total(all: Boolean): Int
+  facets: _ContentFacet
+  autocomplete: _ContentAutocomplete
+}
+
+input _ContentWhereInput {
+  _and: [_ContentWhereInput]
+  _or: [_ContentWhereInput]
+  _not: [_ContentWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+  _metadata: IContentMetadataWhereInput
+}
+
+type _Experience implements IData & _IContent & _IPage & _IExperience {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+  composition: CompositionStructureNode
+}
+
+type _ExperienceAutocomplete {
+  _metadata: IContentMetadataAutocomplete
+  composition: CompositionStructureNodeAutocomplete
+}
+
+type _ExperienceFacet {
+  _metadata: IContentMetadataFacet
+  composition: CompositionStructureNodeFacet
+}
+
+input _ExperienceOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+  _metadata: IContentMetadataOrderByInput
+  composition: CompositionStructureNodeOrderByInput
+}
+
+type _ExperienceOutput {
+  items: [_IExperience]
+  item: _IExperience
+  cursor: String
+  total(all: Boolean): Int
+  facets: _ExperienceFacet
+  autocomplete: _ExperienceAutocomplete
+}
+
+input _ExperienceWhereInput {
+  _and: [_ExperienceWhereInput]
+  _or: [_ExperienceWhereInput]
+  _not: [_ExperienceWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+  _metadata: IContentMetadataWhereInput
+  composition: CompositionStructureNodeWhereInput
+}
+
+type _Folder implements IData & _IContent & _IFolder {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+}
+
+type _FolderAutocomplete {
+  _metadata: IContentMetadataAutocomplete
+}
+
+type _FolderFacet {
+  _metadata: IContentMetadataFacet
+}
+
+input _FolderOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+  _metadata: IContentMetadataOrderByInput
+}
+
+type _FolderOutput {
+  items: [_IFolder]
+  item: _IFolder
+  cursor: String
+  total(all: Boolean): Int
+  facets: _FolderFacet
+  autocomplete: _FolderAutocomplete
+}
+
+input _FolderWhereInput {
+  _and: [_FolderWhereInput]
+  _or: [_FolderWhereInput]
+  _not: [_FolderWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+  _metadata: IContentMetadataWhereInput
+}
+
+interface _IComponent {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+}
+
+type _IComponentFacet {
+  _metadata: IContentMetadataFacet
+}
+
+input _IComponentOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+  _metadata: IContentMetadataOrderByInput
+}
+
+input _IComponentWhereInput {
+  _and: [_IComponentWhereInput]
+  _or: [_IComponentWhereInput]
+  _not: [_IComponentWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+  _metadata: IContentMetadataWhereInput
+}
+
+interface _IContent {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+}
+
+interface _IExperience {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+  composition: CompositionStructureNode
+}
+
+interface _IFolder {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+}
+
+interface _IImage {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+}
+
+type _Image implements IData & _IContent & _IMedia & _IImage {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+}
+
+type _ImageAutocomplete {
+  _metadata: IContentMetadataAutocomplete
+}
+
+type _ImageFacet {
+  _metadata: IContentMetadataFacet
+}
+
+input _ImageOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+  _metadata: IContentMetadataOrderByInput
+}
+
+type _ImageOutput {
+  items: [_IImage]
+  item: _IImage
+  cursor: String
+  total(all: Boolean): Int
+  facets: _ImageFacet
+  autocomplete: _ImageAutocomplete
+}
+
+input _ImageWhereInput {
+  _and: [_ImageWhereInput]
+  _or: [_ImageWhereInput]
+  _not: [_ImageWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+  _metadata: IContentMetadataWhereInput
+}
+
+interface _IMedia {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+}
+
+interface _IPage {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+}
+
+interface _ISection {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+  composition: CompositionStructureNode
+}
+
+interface _IVideo {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+}
+
+type _Media implements IData & _IContent & _IMedia {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+}
+
+type _MediaAutocomplete {
+  _metadata: IContentMetadataAutocomplete
+}
+
+type _MediaFacet {
+  _metadata: IContentMetadataFacet
+}
+
+input _MediaOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+  _metadata: IContentMetadataOrderByInput
+}
+
+type _MediaOutput {
+  items: [_IMedia]
+  item: _IMedia
+  cursor: String
+  total(all: Boolean): Int
+  facets: _MediaFacet
+  autocomplete: _MediaAutocomplete
+}
+
+input _MediaWhereInput {
+  _and: [_MediaWhereInput]
+  _or: [_MediaWhereInput]
+  _not: [_MediaWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+  _metadata: IContentMetadataWhereInput
+}
+
+type _Page implements IData & _IContent & _IPage {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+}
+
+type _PageAutocomplete {
+  _metadata: IContentMetadataAutocomplete
+}
+
+type _PageFacet {
+  _metadata: IContentMetadataFacet
+}
+
+input _PageOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+  _metadata: IContentMetadataOrderByInput
+}
+
+type _PageOutput {
+  items: [_IPage]
+  item: _IPage
+  cursor: String
+  total(all: Boolean): Int
+  facets: _PageFacet
+  autocomplete: _PageAutocomplete
+}
+
+input _PageWhereInput {
+  _and: [_PageWhereInput]
+  _or: [_PageWhereInput]
+  _not: [_PageWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+  _metadata: IContentMetadataWhereInput
+}
+
+type _Section implements IData & _IContent & _IComponent & _ISection {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+  composition: CompositionStructureNode
+}
+
+type _SectionAutocomplete {
+  _metadata: IContentMetadataAutocomplete
+  composition: CompositionStructureNodeAutocomplete
+}
+
+type _SectionFacet {
+  _metadata: IContentMetadataFacet
+  composition: CompositionStructureNodeFacet
+}
+
+input _SectionOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+  _metadata: IContentMetadataOrderByInput
+  composition: CompositionStructureNodeOrderByInput
+}
+
+type _SectionOutput {
+  items: [_ISection]
+  item: _ISection
+  cursor: String
+  total(all: Boolean): Int
+  facets: _SectionFacet
+  autocomplete: _SectionAutocomplete
+}
+
+input _SectionWhereInput {
+  _and: [_SectionWhereInput]
+  _or: [_SectionWhereInput]
+  _not: [_SectionWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+  _metadata: IContentMetadataWhereInput
+  composition: CompositionStructureNodeWhereInput
+}
+
+type _Video implements IData & _IContent & _IMedia & _IVideo {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+}
+
+type _VideoAutocomplete {
+  _metadata: IContentMetadataAutocomplete
+}
+
+type _VideoFacet {
+  _metadata: IContentMetadataFacet
+}
+
+input _VideoOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+  _metadata: IContentMetadataOrderByInput
+}
+
+type _VideoOutput {
+  items: [_IVideo]
+  item: _IVideo
+  cursor: String
+  total(all: Boolean): Int
+  facets: _VideoFacet
+  autocomplete: _VideoAutocomplete
+}
+
+input _VideoWhereInput {
+  _and: [_VideoWhereInput]
+  _or: [_VideoWhereInput]
+  _not: [_VideoWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+  _metadata: IContentMetadataWhereInput
+}
+
+type ArticlePage implements IData & _IContent & _IPage {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+  Body: SearchableRichText
+}
+
+type ArticlePageAutocomplete {
+  _metadata: IContentMetadataAutocomplete
+}
+
+type ArticlePageFacet {
+  _metadata: IContentMetadataFacet
+  Body: SearchableRichTextFacet
+}
+
+input ArticlePageOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+  _metadata: IContentMetadataOrderByInput
+  Body: SearchableRichTextOrderByInput
+}
+
+type ArticlePageOutput {
+  items: [ArticlePage]
+  item: ArticlePage
+  cursor: String
+  total(all: Boolean): Int
+  facets: ArticlePageFacet
+  autocomplete: ArticlePageAutocomplete
+}
+
+input ArticlePageWhereInput {
+  _and: [ArticlePageWhereInput]
+  _or: [ArticlePageWhereInput]
+  _not: [ArticlePageWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+  _metadata: IContentMetadataWhereInput
+  Body: SearchableRichTextWhereInput
+}
+
+type BlankExperience implements IData & _IContent & _IPage & _IExperience {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+  composition: CompositionStructureNode
+}
+
+type BlankExperienceAutocomplete {
+  _metadata: IContentMetadataAutocomplete
+  composition: CompositionStructureNodeAutocomplete
+}
+
+type BlankExperienceFacet {
+  _metadata: IContentMetadataFacet
+  composition: CompositionStructureNodeFacet
+}
+
+input BlankExperienceOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+  _metadata: IContentMetadataOrderByInput
+  composition: CompositionStructureNodeOrderByInput
+}
+
+type BlankExperienceOutput {
+  items: [BlankExperience]
+  item: BlankExperience
+  cursor: String
+  total(all: Boolean): Int
+  facets: BlankExperienceFacet
+  autocomplete: BlankExperienceAutocomplete
+}
+
+input BlankExperienceWhereInput {
+  _and: [BlankExperienceWhereInput]
+  _or: [BlankExperienceWhereInput]
+  _not: [BlankExperienceWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+  _metadata: IContentMetadataWhereInput
+  composition: CompositionStructureNodeWhereInput
+}
+
+type BlankSection implements IData & _IContent & _IComponent & _ISection {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+  composition: CompositionStructureNode
+}
+
+type BlankSectionAutocomplete {
+  _metadata: IContentMetadataAutocomplete
+  composition: CompositionStructureNodeAutocomplete
+}
+
+type BlankSectionFacet {
+  _metadata: IContentMetadataFacet
+  composition: CompositionStructureNodeFacet
+}
+
+input BlankSectionOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+  _metadata: IContentMetadataOrderByInput
+  composition: CompositionStructureNodeOrderByInput
+}
+
+type BlankSectionOutput {
+  items: [BlankSection]
+  item: BlankSection
+  cursor: String
+  total(all: Boolean): Int
+  facets: BlankSectionFacet
+  autocomplete: BlankSectionAutocomplete
+}
+
+input BlankSectionWhereInput {
+  _and: [BlankSectionWhereInput]
+  _or: [BlankSectionWhereInput]
+  _not: [BlankSectionWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+  _metadata: IContentMetadataWhereInput
+  composition: CompositionStructureNodeWhereInput
+}
+
+scalar Bool
+
+type CompositionComponentNode implements ICompositionNode & ICompositionComponentNode {
+  type: String
+  nodeType: String
+  layoutType: String
+  displayName: String
+  key: String
+  displayTemplateKey: String
+  displaySettings: [CompositionDisplaySetting]
+  component: _IComponent
+}
+
+type CompositionDisplaySetting {
+  key: String
+  value: String
+}
+
+type CompositionDisplaySettingAutocomplete {
+  key(value: String! limit: Int! = 10): [String]
+  value(value: String! limit: Int! = 10): [String]
+}
+
+type CompositionDisplaySettingFacet {
+  key(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  value(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+}
+
+input CompositionDisplaySettingOrderByInput {
+  key: OrderBy
+  value: OrderBy
+}
+
+input CompositionDisplaySettingWhereInput {
+  key: StringFilterInput
+  value: StringFilterInput
+}
+
+type CompositionNode implements ICompositionNode {
+  type: String
+  nodeType: String
+  layoutType: String
+  displayName: String
+  key: String
+  displayTemplateKey: String
+  displaySettings: [CompositionDisplaySetting]
+}
+
+type CompositionStructureNode implements ICompositionNode & ICompositionStructureNode {
+  type: String
+  nodeType: String
+  layoutType: String
+  displayName: String
+  key: String
+  displayTemplateKey: String
+  displaySettings: [CompositionDisplaySetting]
+  nodes: [ICompositionNode]
+  component: _IComponent
+}
+
+type CompositionStructureNodeAutocomplete {
+  type(value: String! limit: Int! = 10): [String]
+  nodeType(value: String! limit: Int! = 10): [String]
+  layoutType(value: String! limit: Int! = 10): [String]
+  displayName(value: String! limit: Int! = 10): [String]
+  key(value: String! limit: Int! = 10): [String]
+  displayTemplateKey(value: String! limit: Int! = 10): [String]
+  displaySettings: CompositionDisplaySettingAutocomplete
+  nodes: ICompositionNodeAutocomplete
+}
+
+type CompositionStructureNodeFacet {
+  type(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  nodeType(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  layoutType(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  displayName(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  key(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  displayTemplateKey(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  displaySettings: CompositionDisplaySettingFacet
+  nodes: ICompositionNodeFacet
+  component: _IComponentFacet
+}
+
+input CompositionStructureNodeOrderByInput {
+  type: OrderBy
+  nodeType: OrderBy
+  layoutType: OrderBy
+  displayName: OrderBy
+  key: OrderBy
+  displayTemplateKey: OrderBy
+  displaySettings: CompositionDisplaySettingOrderByInput
+  nodes: ICompositionNodeOrderByInput
+  component: _IComponentOrderByInput
+}
+
+input CompositionStructureNodeWhereInput {
+  type: StringFilterInput
+  nodeType: StringFilterInput
+  layoutType: StringFilterInput
+  displayName: StringFilterInput
+  key: StringFilterInput
+  displayTemplateKey: StringFilterInput
+  displaySettings: CompositionDisplaySettingWhereInput
+  nodes: ICompositionNodeWhereInput
+  component: _IComponentWhereInput
+}
+
+type ContentMetadata implements IContentMetadata {
+  key: String
+  locale: String
+  fallbackForLocale: String
+  version: String
+  displayName(highlight: HighlightOptions): String
+  url: ContentUrl
+  types: [String]
+  published: DateTime
+  status: String
+  changeset: String
+  created: DateTime
+  lastModified: DateTime
+  sortOrder: Int
+  variation: String
+}
+
+type ContentUrl {
+  type: String
+  default: String
+  hierarchical: String
+  internal: String
+  graph: String
+  base: String
+}
+
+type ContentUrlAutocomplete {
+  type(value: String! limit: Int! = 10): [String]
+  default(value: String! limit: Int! = 10): [String]
+  hierarchical(value: String! limit: Int! = 10): [String]
+  internal(value: String! limit: Int! = 10): [String]
+  graph(value: String! limit: Int! = 10): [String]
+  base(value: String! limit: Int! = 10): [String]
+}
+
+type ContentUrlFacet {
+  type(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  default(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  hierarchical(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  internal(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  graph(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  base(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+}
+
+input ContentUrlOrderByInput {
+  type: OrderBy
+  default: OrderBy
+  hierarchical: OrderBy
+  internal: OrderBy
+  graph: OrderBy
+  base: OrderBy
+}
+
+input ContentUrlWhereInput {
+  type: StringFilterInput
+  default: StringFilterInput
+  hierarchical: StringFilterInput
+  internal: StringFilterInput
+  graph: StringFilterInput
+  base: StringFilterInput
+}
+
+type Data implements IData {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+}
+
+input DataOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+}
+
+type DataOutput {
+  items: [IData]
+  item: IData
+  cursor: String
+  total(all: Boolean): Int
+}
+
+input DataWhereInput {
+  _and: [DataWhereInput]
+  _or: [DataWhereInput]
+  _not: [DataWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+}
+
+scalar Date
+
+type DateFacet {
+  name: String
+  count: Int
+}
+
+enum DateFacetUnit {
+  "Defined as 1000 milliseconds each."
+  MINUTE
+  "Defined as 60 minutes each (3,600,000 milliseconds). All hours begin at 00 minutes and 00 seconds."
+  HOUR
+  "Defined as 24 hours (86,400,000 milliseconds). All days begin at the earliest possible time, which is usually 00:00:00 (midnight)."
+  DAY
+}
+
+input DateFilterInput {
+  "`eq` matches on an exact value, but the value is case-insensitive."
+  eq: Date
+  "`not_eq` retrieves results not matching with an exact (but case-insensitive) value."
+  notEq: Date
+  "`gt` retrieves results with matches that have a value which is `greater than` it."
+  gt: Date
+  "`gte` retrieves results with matches that have a value which is `greater than or equal to` it."
+  gte: Date
+  "`lt` retrieves results with matches that have a value which is `lower than` it."
+  lt: Date
+  "`lte` retrieves results with matches that have a value which is `lower than or equal to` it."
+  lte: Date
+  "`exist` matches results that have this field."
+  exist: Boolean
+  "`boost` influences the weight of a field by boosting a match with a number (default: 1) — counts more towards the eventual relevance score which can be projected with `_score` — at query time. Note that `boost` cannot be a negative number."
+  boost: Int
+  "`decay` influences the weight of the score with a decay function. For example, results that have a more recent datetime will be ranked higher. The `origin` will be `now()` in case not specified. The `scale` is by default 10. The `rate` must be in the range `[0..1]`."
+  decay: Decay
+}
+
+scalar DateTime
+
+"Decay influences the weight of the score based on field values with a decay function"
+input Decay {
+  origin: Date
+  scale: Int = 10
+  rate: Float
+}
+
+enum FactorModifier {
+  "Do not apply any multiplier to the field value"
+  NONE
+  "Square the field value (multiply it by itself)"
+  SQUARE
+  "Take the square root of the field value"
+  SQRT
+  "Add 1 to the field value and take the natural logarithm"
+  LOG
+  "Reciprocate the field value, same as 1\/x where x is the field's value"
+  RECIPROCAL
+}
+
+type GenericMedia implements IData & _IContent & _IMedia {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+}
+
+type GenericMediaAutocomplete {
+  _metadata: IContentMetadataAutocomplete
+}
+
+type GenericMediaFacet {
+  _metadata: IContentMetadataFacet
+}
+
+input GenericMediaOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+  _metadata: IContentMetadataOrderByInput
+}
+
+type GenericMediaOutput {
+  items: [GenericMedia]
+  item: GenericMedia
+  cursor: String
+  total(all: Boolean): Int
+  facets: GenericMediaFacet
+  autocomplete: GenericMediaAutocomplete
+}
+
+input GenericMediaWhereInput {
+  _and: [GenericMediaWhereInput]
+  _or: [GenericMediaWhereInput]
+  _not: [GenericMediaWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+  _metadata: IContentMetadataWhereInput
+}
+
+"Options for highlighting"
+input HighlightOptions {
+  enabled: Boolean
+  startToken: String
+  endToken: String
+}
+
+type HomeType implements IData & _IContent & _IPage {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+}
+
+type HomeTypeAutocomplete {
+  _metadata: IContentMetadataAutocomplete
+}
+
+type HomeTypeFacet {
+  _metadata: IContentMetadataFacet
+}
+
+input HomeTypeOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+  _metadata: IContentMetadataOrderByInput
+}
+
+type HomeTypeOutput {
+  items: [HomeType]
+  item: HomeType
+  cursor: String
+  total(all: Boolean): Int
+  facets: HomeTypeFacet
+  autocomplete: HomeTypeAutocomplete
+}
+
+input HomeTypeWhereInput {
+  _and: [HomeTypeWhereInput]
+  _or: [HomeTypeWhereInput]
+  _not: [HomeTypeWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+  _metadata: IContentMetadataWhereInput
+}
+
+interface ICompositionComponentNode {
+  type: String
+  nodeType: String
+  layoutType: String
+  displayName: String
+  key: String
+  displayTemplateKey: String
+  displaySettings: [CompositionDisplaySetting]
+  component: _IComponent
+}
+
+interface ICompositionNode {
+  type: String
+  nodeType: String
+  layoutType: String
+  displayName: String
+  key: String
+  displayTemplateKey: String
+  displaySettings: [CompositionDisplaySetting]
+}
+
+type ICompositionNodeAutocomplete {
+  type(value: String! limit: Int! = 10): [String]
+  nodeType(value: String! limit: Int! = 10): [String]
+  layoutType(value: String! limit: Int! = 10): [String]
+  displayName(value: String! limit: Int! = 10): [String]
+  key(value: String! limit: Int! = 10): [String]
+  displayTemplateKey(value: String! limit: Int! = 10): [String]
+  displaySettings: CompositionDisplaySettingAutocomplete
+}
+
+type ICompositionNodeFacet {
+  type(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  nodeType(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  layoutType(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  displayName(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  key(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  displayTemplateKey(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  displaySettings: CompositionDisplaySettingFacet
+}
+
+input ICompositionNodeOrderByInput {
+  type: OrderBy
+  nodeType: OrderBy
+  layoutType: OrderBy
+  displayName: OrderBy
+  key: OrderBy
+  displayTemplateKey: OrderBy
+  displaySettings: CompositionDisplaySettingOrderByInput
+}
+
+input ICompositionNodeWhereInput {
+  type: StringFilterInput
+  nodeType: StringFilterInput
+  layoutType: StringFilterInput
+  displayName: StringFilterInput
+  key: StringFilterInput
+  displayTemplateKey: StringFilterInput
+  displaySettings: CompositionDisplaySettingWhereInput
+}
+
+interface ICompositionStructureNode {
+  type: String
+  nodeType: String
+  layoutType: String
+  displayName: String
+  key: String
+  displayTemplateKey: String
+  displaySettings: [CompositionDisplaySetting]
+  nodes: [ICompositionNode]
+  component: _IComponent
+}
+
+interface IContentMetadata {
+  key: String
+  locale: String
+  fallbackForLocale: String
+  version: String
+  displayName(highlight: HighlightOptions): String
+  url: ContentUrl
+  types: [String]
+  published: DateTime
+  status: String
+  changeset: String
+  created: DateTime
+  lastModified: DateTime
+  sortOrder: Int
+  variation: String
+}
+
+type IContentMetadataAutocomplete {
+  key(value: String! limit: Int! = 10): [String]
+  locale(value: String! limit: Int! = 10): [String]
+  fallbackForLocale(value: String! limit: Int! = 10): [String]
+  version(value: String! limit: Int! = 10): [String]
+  url: ContentUrlAutocomplete
+  types(value: String! limit: Int! = 10): [String]
+  status(value: String! limit: Int! = 10): [String]
+  changeset(value: String! limit: Int! = 10): [String]
+  variation(value: String! limit: Int! = 10): [String]
+}
+
+type IContentMetadataFacet {
+  key(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  locale(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  fallbackForLocale(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  version(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  displayName(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  url: ContentUrlFacet
+  types(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  published(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  status(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  changeset(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  created(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  lastModified(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  sortOrder(ranges: [RangeFacetsInput] orderType: OrderByFacetType orderBy: OrderBy limit: Int filters: [String!]): [NumberFacet]
+  variation(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+}
+
+input IContentMetadataOrderByInput {
+  key: OrderBy
+  locale: OrderBy
+  fallbackForLocale: OrderBy
+  version: OrderBy
+  displayName: OrderBy
+  url: ContentUrlOrderByInput
+  types: OrderBy
+  published: OrderBy
+  status: OrderBy
+  changeset: OrderBy
+  created: OrderBy
+  lastModified: OrderBy
+  sortOrder: OrderBy
+  variation: OrderBy
+}
+
+input IContentMetadataWhereInput {
+  key: StringFilterInput
+  locale: StringFilterInput
+  fallbackForLocale: StringFilterInput
+  version: StringFilterInput
+  displayName: SearchableStringFilterInput
+  url: ContentUrlWhereInput
+  types: StringFilterInput
+  published: DateFilterInput
+  status: StringFilterInput
+  changeset: StringFilterInput
+  created: DateFilterInput
+  lastModified: DateFilterInput
+  sortOrder: IntFilterInput
+  variation: StringFilterInput
+}
+
+interface IData {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+}
+
+interface IInstanceMetadata {
+  key: String
+  locale: String
+  fallbackForLocale: String
+  version: String
+  displayName(highlight: HighlightOptions): String
+  url: ContentUrl
+  types: [String]
+  published: DateTime
+  status: String
+  changeset: String
+  created: DateTime
+  lastModified: DateTime
+  sortOrder: Int
+  variation: String
+  locales: [String]
+  expired: DateTime
+  container: String
+  owner: String
+  routeSegment: String
+  lastModifiedBy: String
+  path: [String]
+  createdBy: String
+}
+
+interface IItemMetadata {
+  key: String
+  locale: String
+  fallbackForLocale: String
+  version: String
+  displayName(highlight: HighlightOptions): String
+  url: ContentUrl
+  types: [String]
+  published: DateTime
+  status: String
+  changeset: String
+  created: DateTime
+  lastModified: DateTime
+  sortOrder: Int
+  variation: String
+  displayOption: String
+}
+
+type ImageMedia implements IData & _IContent & _IMedia & _IImage {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+}
+
+type ImageMediaAutocomplete {
+  _metadata: IContentMetadataAutocomplete
+}
+
+type ImageMediaFacet {
+  _metadata: IContentMetadataFacet
+}
+
+input ImageMediaOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+  _metadata: IContentMetadataOrderByInput
+}
+
+type ImageMediaOutput {
+  items: [ImageMedia]
+  item: ImageMedia
+  cursor: String
+  total(all: Boolean): Int
+  facets: ImageMediaFacet
+  autocomplete: ImageMediaAutocomplete
+}
+
+input ImageMediaWhereInput {
+  _and: [ImageMediaWhereInput]
+  _or: [ImageMediaWhereInput]
+  _not: [ImageMediaWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+  _metadata: IContentMetadataWhereInput
+}
+
+interface IMediaMetadata {
+  key: String
+  locale: String
+  fallbackForLocale: String
+  version: String
+  displayName(highlight: HighlightOptions): String
+  url: ContentUrl
+  types: [String]
+  published: DateTime
+  status: String
+  changeset: String
+  created: DateTime
+  lastModified: DateTime
+  sortOrder: Int
+  variation: String
+  locales: [String]
+  expired: DateTime
+  container: String
+  owner: String
+  routeSegment: String
+  lastModifiedBy: String
+  path: [String]
+  createdBy: String
+  thumbnail: String
+  mimeType: String
+  content(highlight: HighlightOptions): String
+}
+
+type InstanceMetadata implements IContentMetadata & IInstanceMetadata {
+  key: String
+  locale: String
+  fallbackForLocale: String
+  version: String
+  displayName(highlight: HighlightOptions): String
+  url: ContentUrl
+  types: [String]
+  published: DateTime
+  status: String
+  changeset: String
+  created: DateTime
+  lastModified: DateTime
+  sortOrder: Int
+  variation: String
+  locales: [String]
+  expired: DateTime
+  container: String
+  owner: String
+  routeSegment: String
+  lastModifiedBy: String
+  path: [String]
+  createdBy: String
+}
+
+input IntFilterInput {
+  "`eq` matches on an exact value, but the value is case-insensitive."
+  eq: Int
+  "`not_eq` retrieves results not matching with an exact (but case-insensitive) value."
+  notEq: Int
+  "`gt` retrieves results with matches that have a value which is `greater than` it."
+  gt: Int
+  "`gte` retrieves results with matches that have a value which is `greater than or equal to` it."
+  gte: Int
+  "`lt` retrieves results with matches that have a value which is `lower than` it."
+  lt: Int
+  "`lte` retrieves results with matches that have a value which is `lower than or equal to` it."
+  lte: Int
+  "`exist` matches results that have this field."
+  exist: Boolean
+  "`in` matches with 1 or more exact values in a list. Example: `in: [\"word1\", \"word2\", \"this is a phrase\"]`"
+  in: [Int]
+  "`not_in` returns results that do not match with 1 or more exact values in a list. Example: `not_in: [\"word1\", \"word2\", \"this is a phrase\"]`"
+  notIn: [Int]
+  "`boost` influences the weight of a field by boosting a match with a number (default: 1) — counts more towards the eventual relevance score which can be projected with `_score` — at query time. Note that `boost` cannot be a negative number."
+  boost: Int
+  "`Factor` allows you to use a number value in a field to influence the `_score` directly. If used on a multi-valued field, then only the lowest value of the field is used in calculations. Default for `value` is `1`. Default for `modifier` is `NONE`."
+  factor: NumberFactor
+}
+
+type ItemMetadata implements IContentMetadata & IItemMetadata {
+  key: String
+  locale: String
+  fallbackForLocale: String
+  version: String
+  displayName(highlight: HighlightOptions): String
+  url: ContentUrl
+  types: [String]
+  published: DateTime
+  status: String
+  changeset: String
+  created: DateTime
+  lastModified: DateTime
+  sortOrder: Int
+  variation: String
+  displayOption: String
+}
+
+"The `JSON` scalar type represents JSON values as specified by [ECMA-404](https:\/\/ecma-international.org\/publications-and-standards\/standards\/ecma-404\/)."
+scalar JSON
+
+input LinkConfig {
+  from: String
+  to: String
+}
+
+enum LinkTypes {
+  "\n| *Direction* | &nbsp; | *Field*     |\n| ----------: | ------ | :---------- |\n| *from*      |        | `_metadata.key` |\n| *to*        |        | `_metadata.container`   |"
+  DEFAULT
+  "\n| *Direction* | &nbsp; | *Field*     |\n| ----------: | ------ | :---------- |\n| *from*      |        | `_metadata.key` |\n| *to*        |        | `_metadata.container`   |"
+  ITEMS
+  "\n| *Direction* | &nbsp; | *Field*     |\n| ----------: | ------ | :---------- |\n| *from*      |        | `_metadata.key` |\n| *to*        |        | `_metadata.owner`   |"
+  ASSETS
+  "\n| *Direction* | &nbsp; | *Field*     |\n| ----------: | ------ | :---------- |\n| *from*      |        | `_metadata.path` |\n| *to*        |        | `_metadata.key`   |"
+  PATH
+}
+
+enum Locales {
+  ALL
+  NEUTRAL
+  en
+}
+
+type MediaMetadata implements IContentMetadata & IInstanceMetadata & IMediaMetadata {
+  key: String
+  locale: String
+  fallbackForLocale: String
+  version: String
+  displayName(highlight: HighlightOptions): String
+  url: ContentUrl
+  types: [String]
+  published: DateTime
+  status: String
+  changeset: String
+  created: DateTime
+  lastModified: DateTime
+  sortOrder: Int
+  variation: String
+  locales: [String]
+  expired: DateTime
+  container: String
+  owner: String
+  routeSegment: String
+  lastModifiedBy: String
+  path: [String]
+  createdBy: String
+  thumbnail: String
+  mimeType: String
+  content(highlight: HighlightOptions): String
+}
+
+type NumberFacet {
+  name: String
+  count: Int
+}
+
+"Factor influences the score based of number values with a factor function"
+input NumberFactor {
+  value: Float
+  modifier: FactorModifier
+}
+
+enum OrderBy {
+  ASC
+  DESC
+}
+
+enum OrderByFacetType {
+  COUNT
+  VALUE
+}
+
+type Query {
+  Data(where: DataWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: DataOrderByInput locale: [system_Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): DataOutput
+  _Content(where: _ContentWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _ContentOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _ContentOutput
+  _Component(where: _ComponentWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _ComponentOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _ComponentOutput
+  _Media(where: _MediaWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _MediaOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _MediaOutput
+  _Page(where: _PageWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _PageOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _PageOutput
+  _Image(where: _ImageWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _ImageOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _ImageOutput
+  _Video(where: _VideoWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _VideoOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _VideoOutput
+  _Folder(where: _FolderWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _FolderOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _FolderOutput
+  _Experience(where: _ExperienceWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _ExperienceOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _ExperienceOutput
+  _Section(where: _SectionWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _SectionOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _SectionOutput
+  BlankSection(where: BlankSectionWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: BlankSectionOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): BlankSectionOutput
+  BlankExperience(where: BlankExperienceWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: BlankExperienceOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): BlankExperienceOutput
+  ArticlePage(where: ArticlePageWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: ArticlePageOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): ArticlePageOutput
+  HomeType(where: HomeTypeWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: HomeTypeOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): HomeTypeOutput
+  SearchPage(where: SearchPageWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: SearchPageOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): SearchPageOutput
+  GenericMedia(where: GenericMediaWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: GenericMediaOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): GenericMediaOutput
+  ImageMedia(where: ImageMediaWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: ImageMediaOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): ImageMediaOutput
+  VideoMedia(where: VideoMediaWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: VideoMediaOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): VideoMediaOutput
+  SysContentFolder(where: SysContentFolderWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: SysContentFolderOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): SysContentFolderOutput
+}
+
+type QueryRef {
+  Data(where: DataWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: DataOrderByInput locale: [system_Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): DataOutput
+  _Content(where: _ContentWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _ContentOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _ContentOutput
+  _Component(where: _ComponentWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _ComponentOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _ComponentOutput
+  _Media(where: _MediaWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _MediaOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _MediaOutput
+  _Page(where: _PageWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _PageOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _PageOutput
+  _Image(where: _ImageWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _ImageOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _ImageOutput
+  _Video(where: _VideoWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _VideoOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _VideoOutput
+  _Folder(where: _FolderWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _FolderOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _FolderOutput
+  _Experience(where: _ExperienceWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _ExperienceOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _ExperienceOutput
+  _Section(where: _SectionWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _SectionOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _SectionOutput
+  BlankSection(where: BlankSectionWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: BlankSectionOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): BlankSectionOutput
+  BlankExperience(where: BlankExperienceWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: BlankExperienceOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): BlankExperienceOutput
+  ArticlePage(where: ArticlePageWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: ArticlePageOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): ArticlePageOutput
+  HomeType(where: HomeTypeWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: HomeTypeOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): HomeTypeOutput
+  SearchPage(where: SearchPageWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: SearchPageOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): SearchPageOutput
+  GenericMedia(where: GenericMediaWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: GenericMediaOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): GenericMediaOutput
+  ImageMedia(where: ImageMediaWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: ImageMediaOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): ImageMediaOutput
+  VideoMedia(where: VideoMediaWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: VideoMediaOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): VideoMediaOutput
+  SysContentFolder(where: SysContentFolderWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: SysContentFolderOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): SysContentFolderOutput
+}
+
+input RangeFacetsInput {
+  from: Int
+  to: Int
+}
+
+enum Ranking {
+  RELEVANCE
+  SEMANTIC
+  BOOST_ONLY
+  DOC
+}
+
+type SearchableRichText {
+  html(highlight: HighlightOptions): String
+  json: JSON
+}
+
+type SearchableRichTextFacet {
+  html(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+}
+
+input SearchableRichTextOrderByInput {
+  html: OrderBy
+}
+
+input SearchableRichTextWhereInput {
+  html: SearchableStringFilterInput
+}
+
+input SearchableStringFilterInput {
+  "`eq` matches on an exact value, but the value is case-insensitive."
+  eq: String
+  "`not_eq` retrieves results not matching with an exact (but case-insensitive) value."
+  notEq: String
+  "`like` matches on substrings with wildcard support: `%` to match on 0 or more characters, `_` to match on any character. "
+  like: String
+  "`exist` matches results that have this field."
+  exist: Boolean
+  "`starts_with` retrieves matches that start with a certain value (prefix)."
+  startsWith: String
+  "`in` matches with 1 or more exact values in a list. Example: `in: [\"word1\", \"word2\", \"this is a phrase\"]`"
+  in: [String]
+  "`not_in` returns results that do not match with 1 or more exact values in a list. Example: `not_in: [\"word1\", \"word2\", \"this is a phrase\"]`"
+  notIn: [String]
+  "`match` performs full-text search on a word or phrase where less relevant items are also returned. The `match` operator is only supported for `searchable` fields. It will improve fulltext search by making it easier to match on words. More exact matches will be ranked higher, less exact matches will be ranked lower. The `match` operator is supported with synonyms and fuzzy search."
+  match: String
+  "`contains` performs full-text search on a word or phrase."
+  contains: String
+  "`boost` influences the weight of a field by boosting a match with a number (default: 1) — counts more towards the eventual relevance score which can be projected with `_score` — at query time. Note that `boost` cannot be a negative number."
+  boost: Int
+  "expands query value with synonyms. Example: if `H2O` is a synonym of `water`, then querying for `water` will also return results with `H2O`."
+  synonyms: [SynonymSlot]
+  "enables supporting fuzzy matching on the query terms (keywords), which returns items that contain terms in the content similar to the keywords, as measured by a _Levenshtein edit distance_. An edit distance is the number of one-character changes needed to turn one term into another. The edit distance is based on the length of the term. "
+  fuzzy: Boolean
+}
+
+type SearchPage implements IData & _IContent & _IPage {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+}
+
+type SearchPageAutocomplete {
+  _metadata: IContentMetadataAutocomplete
+}
+
+type SearchPageFacet {
+  _metadata: IContentMetadataFacet
+}
+
+input SearchPageOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+  _metadata: IContentMetadataOrderByInput
+}
+
+type SearchPageOutput {
+  items: [SearchPage]
+  item: SearchPage
+  cursor: String
+  total(all: Boolean): Int
+  facets: SearchPageFacet
+  autocomplete: SearchPageAutocomplete
+}
+
+input SearchPageWhereInput {
+  _and: [SearchPageWhereInput]
+  _or: [SearchPageWhereInput]
+  _not: [SearchPageWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+  _metadata: IContentMetadataWhereInput
+}
+
+type StringFacet {
+  name: String
+  count: Int
+}
+
+input StringFilterInput {
+  "`eq` matches on an exact value, but the value is case-insensitive."
+  eq: String
+  "`not_eq` retrieves results not matching with an exact (but case-insensitive) value."
+  notEq: String
+  "`like` matches on substrings with wildcard support: `%` to match on 0 or more characters, `_` to match on any character. "
+  like: String
+  "`exist` matches results that have this field."
+  exist: Boolean
+  "`starts_with` retrieves matches that start with a certain value (prefix)."
+  startsWith: String
+  "`ends_with` retrieves matches that end with a certain value (suffix)."
+  endsWith: String
+  "`in` matches with 1 or more exact values in a list. Example: `in: [\"word1\", \"word2\", \"this is a phrase\"]`"
+  in: [String]
+  "`not_in` returns results that do not match with 1 or more exact values in a list. Example: `not_in: [\"word1\", \"word2\", \"this is a phrase\"]`"
+  notIn: [String]
+  "`boost` influences the weight of a field by boosting a match with a number (default: 1) — counts more towards the eventual relevance score which can be projected with `_score` — at query time. Note that `boost` cannot be a negative number."
+  boost: Int
+  "expands query value with synonyms. Example: if `H2O` is a synonym of `water`, then querying for `water` will also return results with `H2O`."
+  synonyms: [SynonymSlot]
+  "enables supporting fuzzy matching on the query terms (keywords), which returns items that contain terms in the content similar to the keywords, as measured by a _Levenshtein edit distance_. An edit distance is the number of one-character changes needed to turn one term into another. The edit distance is based on the length of the term. "
+  fuzzy: Boolean
+}
+
+enum SynonymSlot {
+  "synonym slot 1"
+  ONE
+  "synonym slot 2"
+  TWO
+}
+
+type SysContentFolder implements IData & _IContent & _IFolder {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+}
+
+type SysContentFolderAutocomplete {
+  _metadata: IContentMetadataAutocomplete
+}
+
+type SysContentFolderFacet {
+  _metadata: IContentMetadataFacet
+}
+
+input SysContentFolderOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+  _metadata: IContentMetadataOrderByInput
+}
+
+type SysContentFolderOutput {
+  items: [SysContentFolder]
+  item: SysContentFolder
+  cursor: String
+  total(all: Boolean): Int
+  facets: SysContentFolderFacet
+  autocomplete: SysContentFolderAutocomplete
+}
+
+input SysContentFolderWhereInput {
+  _and: [SysContentFolderWhereInput]
+  _or: [SysContentFolderWhereInput]
+  _not: [SysContentFolderWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+  _metadata: IContentMetadataWhereInput
+}
+
+enum system_Locales {
+  ALL
+  NEUTRAL
+}
+
+input usePinnedInput {
+  collectionId: String
+  phrase: String
+}
+
+enum VariationIncludeMode {
+  ALL
+  SOME
+  NONE
+}
+
+input VariationInput {
+  include: VariationIncludeMode
+  value: [String]
+  includeOriginal: Boolean
+}
+
+type VideoMedia implements IData & _IContent & _IMedia & _IVideo {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  _metadata: IContentMetadata
+}
+
+type VideoMediaAutocomplete {
+  _metadata: IContentMetadataAutocomplete
+}
+
+type VideoMediaFacet {
+  _metadata: IContentMetadataFacet
+}
+
+input VideoMediaOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+  _metadata: IContentMetadataOrderByInput
+}
+
+type VideoMediaOutput {
+  items: [VideoMedia]
+  item: VideoMedia
+  cursor: String
+  total(all: Boolean): Int
+  facets: VideoMediaFacet
+  autocomplete: VideoMediaAutocomplete
+}
+
+input VideoMediaWhereInput {
+  _and: [VideoMediaWhereInput]
+  _or: [VideoMediaWhereInput]
+  _not: [VideoMediaWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+  _metadata: IContentMetadataWhereInput
+}
+
+directive @config(source: String searchable: Boolean index: Boolean esType: String link: LinkConfig preset: String) on FIELD_DEFINITION | ENUM_VALUE
+
+"Repeat fragment fields as children selection by `depth`"
+directive @recursive("Recursion level (default: `1`, max: `10`)" depth: Int = 1) on FIELD | INLINE_FRAGMENT

@@ -14,11 +14,25 @@
   
   <ItemGroup>
     <PackageReference Include="EPiServer.CMS" Version="12.34.1" />
-    <PackageReference Include="EPiServer.Find.Cms" Version="16.6.0" />
     <PackageReference Include="Optimizely.ContentGraph.Cms" Version="4.1.1" />
+    <PackageReference Include="StrawberryShake.Server" Version="15.1.11" />
   </ItemGroup>
   
   <ItemGroup>
     <EmbeddedResource Include="Resources\Translations\**\*" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Remove="GraphQLClient\**" />
+    <Content Remove="GraphQLClient\**" />
+    <EmbeddedResource Remove="GraphQLClient\**" />
+    <GraphQL Remove="GraphQLClient\**" />
+    <None Remove="GraphQLClient\**" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="Articles.graphql" />
+    <EmbeddedResource Include="schema.extensions.graphql" />
+    <EmbeddedResource Include="schema.graphql" />
   </ItemGroup>
 </Project>

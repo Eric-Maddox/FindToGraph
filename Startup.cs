@@ -1,10 +1,10 @@
 using EPiServer.Cms.Shell;
 using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.DependencyInjection;
-using EPiServer.Find.Cms;   
 using EPiServer.Scheduler;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
+using StrawberryShake;
 
 namespace FindToGraph;
 
@@ -30,11 +30,12 @@ public class Startup
             .AddCmsAspNetIdentity<ApplicationUser>()
             .AddCms()
             .AddAdminUserRegistration()
-            .AddFind()
             .AddEmbeddedLocalization<Startup>();
 
         services.AddContentDeliveryApi();
         services.AddContentGraph();
+        services.AddGraphQLClient().ConfigureHttpClient(c => c.BaseAddress = new Uri("https://cg.optimizely.com/content/v2?auth=n3nCUREbvDHzkajZjLZmuY1KtS4bR5RhlgXXsnEslceIxnRG"));
+        
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
