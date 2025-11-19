@@ -28,7 +28,7 @@ namespace FindToGraph.Controllers
                 searchResult.EnsureNoErrors();
                 var items = searchResult.Data?.ArticlePage?.Items;
                 if (items != null) {
-                    results = items.Select(item => item?.Body?.Html?.StripParagraphTags() ?? "No content").ToList();
+                    results = items.Select(item => item?.Body?.StripParagraphTags() ?? "No content").ToList();
                 }
             }
 

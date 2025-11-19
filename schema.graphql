@@ -2,7 +2,8 @@ schema {
   query: Query
 }
 
-type _Component implements IData & _IContent & _IComponent {
+"Article page with body content"
+type ArticlePage implements IData & IContent {
   _children: QueryRef @deprecated(reason: "Use `_link` field instead")
   _link(type: LinkTypes): QueryRef
   _deleted: Bool
@@ -11,582 +12,78 @@ type _Component implements IData & _IContent & _IComponent {
   _score: Float
   _id: String
   _track: String
-  _metadata: IContentMetadata
-}
-
-type _ComponentAutocomplete {
-  _metadata: IContentMetadataAutocomplete
-}
-
-type _ComponentFacet {
-  _metadata: IContentMetadataFacet
-}
-
-input _ComponentOrderByInput {
-  _ranking: Ranking
-  _modified: OrderBy
-  _minimumScore: Float
-  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
-  _semanticWeight: Float
-  _metadata: IContentMetadataOrderByInput
-}
-
-type _ComponentOutput {
-  items: [_IComponent]
-  item: _IComponent
-  cursor: String
-  total(all: Boolean): Int
-  facets: _ComponentFacet
-  autocomplete: _ComponentAutocomplete
-}
-
-input _ComponentWhereInput {
-  _and: [_ComponentWhereInput]
-  _or: [_ComponentWhereInput]
-  _not: [_ComponentWhereInput]
-  _fulltext: SearchableStringFilterInput
-  _modified: DateFilterInput
-  _metadata: IContentMetadataWhereInput
-}
-
-type _Content implements IData & _IContent {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-}
-
-type _ContentAutocomplete {
-  _metadata: IContentMetadataAutocomplete
-}
-
-type _ContentFacet {
-  _metadata: IContentMetadataFacet
-}
-
-input _ContentOrderByInput {
-  _ranking: Ranking
-  _modified: OrderBy
-  _minimumScore: Float
-  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
-  _semanticWeight: Float
-  _metadata: IContentMetadataOrderByInput
-}
-
-type _ContentOutput {
-  items: [_IContent]
-  item: _IContent
-  cursor: String
-  total(all: Boolean): Int
-  facets: _ContentFacet
-  autocomplete: _ContentAutocomplete
-}
-
-input _ContentWhereInput {
-  _and: [_ContentWhereInput]
-  _or: [_ContentWhereInput]
-  _not: [_ContentWhereInput]
-  _fulltext: SearchableStringFilterInput
-  _modified: DateFilterInput
-  _metadata: IContentMetadataWhereInput
-}
-
-type _Experience implements IData & _IContent & _IPage & _IExperience {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-  composition: CompositionStructureNode
-}
-
-type _ExperienceAutocomplete {
-  _metadata: IContentMetadataAutocomplete
-  composition: CompositionStructureNodeAutocomplete
-}
-
-type _ExperienceFacet {
-  _metadata: IContentMetadataFacet
-  composition: CompositionStructureNodeFacet
-}
-
-input _ExperienceOrderByInput {
-  _ranking: Ranking
-  _modified: OrderBy
-  _minimumScore: Float
-  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
-  _semanticWeight: Float
-  _metadata: IContentMetadataOrderByInput
-  composition: CompositionStructureNodeOrderByInput
-}
-
-type _ExperienceOutput {
-  items: [_IExperience]
-  item: _IExperience
-  cursor: String
-  total(all: Boolean): Int
-  facets: _ExperienceFacet
-  autocomplete: _ExperienceAutocomplete
-}
-
-input _ExperienceWhereInput {
-  _and: [_ExperienceWhereInput]
-  _or: [_ExperienceWhereInput]
-  _not: [_ExperienceWhereInput]
-  _fulltext: SearchableStringFilterInput
-  _modified: DateFilterInput
-  _metadata: IContentMetadataWhereInput
-  composition: CompositionStructureNodeWhereInput
-}
-
-type _Folder implements IData & _IContent & _IFolder {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-}
-
-type _FolderAutocomplete {
-  _metadata: IContentMetadataAutocomplete
-}
-
-type _FolderFacet {
-  _metadata: IContentMetadataFacet
-}
-
-input _FolderOrderByInput {
-  _ranking: Ranking
-  _modified: OrderBy
-  _minimumScore: Float
-  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
-  _semanticWeight: Float
-  _metadata: IContentMetadataOrderByInput
-}
-
-type _FolderOutput {
-  items: [_IFolder]
-  item: _IFolder
-  cursor: String
-  total(all: Boolean): Int
-  facets: _FolderFacet
-  autocomplete: _FolderAutocomplete
-}
-
-input _FolderWhereInput {
-  _and: [_FolderWhereInput]
-  _or: [_FolderWhereInput]
-  _not: [_FolderWhereInput]
-  _fulltext: SearchableStringFilterInput
-  _modified: DateFilterInput
-  _metadata: IContentMetadataWhereInput
-}
-
-interface _IComponent {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-}
-
-type _IComponentFacet {
-  _metadata: IContentMetadataFacet
-}
-
-input _IComponentOrderByInput {
-  _ranking: Ranking
-  _modified: OrderBy
-  _minimumScore: Float
-  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
-  _semanticWeight: Float
-  _metadata: IContentMetadataOrderByInput
-}
-
-input _IComponentWhereInput {
-  _and: [_IComponentWhereInput]
-  _or: [_IComponentWhereInput]
-  _not: [_IComponentWhereInput]
-  _fulltext: SearchableStringFilterInput
-  _modified: DateFilterInput
-  _metadata: IContentMetadataWhereInput
-}
-
-interface _IContent {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-}
-
-interface _IExperience {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-  composition: CompositionStructureNode
-}
-
-interface _IFolder {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-}
-
-interface _IImage {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-}
-
-type _Image implements IData & _IContent & _IMedia & _IImage {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-}
-
-type _ImageAutocomplete {
-  _metadata: IContentMetadataAutocomplete
-}
-
-type _ImageFacet {
-  _metadata: IContentMetadataFacet
-}
-
-input _ImageOrderByInput {
-  _ranking: Ranking
-  _modified: OrderBy
-  _minimumScore: Float
-  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
-  _semanticWeight: Float
-  _metadata: IContentMetadataOrderByInput
-}
-
-type _ImageOutput {
-  items: [_IImage]
-  item: _IImage
-  cursor: String
-  total(all: Boolean): Int
-  facets: _ImageFacet
-  autocomplete: _ImageAutocomplete
-}
-
-input _ImageWhereInput {
-  _and: [_ImageWhereInput]
-  _or: [_ImageWhereInput]
-  _not: [_ImageWhereInput]
-  _fulltext: SearchableStringFilterInput
-  _modified: DateFilterInput
-  _metadata: IContentMetadataWhereInput
-}
-
-interface _IMedia {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-}
-
-interface _IPage {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-}
-
-interface _ISection {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-  composition: CompositionStructureNode
-}
-
-interface _IVideo {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-}
-
-type _Media implements IData & _IContent & _IMedia {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-}
-
-type _MediaAutocomplete {
-  _metadata: IContentMetadataAutocomplete
-}
-
-type _MediaFacet {
-  _metadata: IContentMetadataFacet
-}
-
-input _MediaOrderByInput {
-  _ranking: Ranking
-  _modified: OrderBy
-  _minimumScore: Float
-  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
-  _semanticWeight: Float
-  _metadata: IContentMetadataOrderByInput
-}
-
-type _MediaOutput {
-  items: [_IMedia]
-  item: _IMedia
-  cursor: String
-  total(all: Boolean): Int
-  facets: _MediaFacet
-  autocomplete: _MediaAutocomplete
-}
-
-input _MediaWhereInput {
-  _and: [_MediaWhereInput]
-  _or: [_MediaWhereInput]
-  _not: [_MediaWhereInput]
-  _fulltext: SearchableStringFilterInput
-  _modified: DateFilterInput
-  _metadata: IContentMetadataWhereInput
-}
-
-type _Page implements IData & _IContent & _IPage {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-}
-
-type _PageAutocomplete {
-  _metadata: IContentMetadataAutocomplete
-}
-
-type _PageFacet {
-  _metadata: IContentMetadataFacet
-}
-
-input _PageOrderByInput {
-  _ranking: Ranking
-  _modified: OrderBy
-  _minimumScore: Float
-  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
-  _semanticWeight: Float
-  _metadata: IContentMetadataOrderByInput
-}
-
-type _PageOutput {
-  items: [_IPage]
-  item: _IPage
-  cursor: String
-  total(all: Boolean): Int
-  facets: _PageFacet
-  autocomplete: _PageAutocomplete
-}
-
-input _PageWhereInput {
-  _and: [_PageWhereInput]
-  _or: [_PageWhereInput]
-  _not: [_PageWhereInput]
-  _fulltext: SearchableStringFilterInput
-  _modified: DateFilterInput
-  _metadata: IContentMetadataWhereInput
-}
-
-type _Section implements IData & _IContent & _IComponent & _ISection {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-  composition: CompositionStructureNode
-}
-
-type _SectionAutocomplete {
-  _metadata: IContentMetadataAutocomplete
-  composition: CompositionStructureNodeAutocomplete
-}
-
-type _SectionFacet {
-  _metadata: IContentMetadataFacet
-  composition: CompositionStructureNodeFacet
-}
-
-input _SectionOrderByInput {
-  _ranking: Ranking
-  _modified: OrderBy
-  _minimumScore: Float
-  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
-  _semanticWeight: Float
-  _metadata: IContentMetadataOrderByInput
-  composition: CompositionStructureNodeOrderByInput
-}
-
-type _SectionOutput {
-  items: [_ISection]
-  item: _ISection
-  cursor: String
-  total(all: Boolean): Int
-  facets: _SectionFacet
-  autocomplete: _SectionAutocomplete
-}
-
-input _SectionWhereInput {
-  _and: [_SectionWhereInput]
-  _or: [_SectionWhereInput]
-  _not: [_SectionWhereInput]
-  _fulltext: SearchableStringFilterInput
-  _modified: DateFilterInput
-  _metadata: IContentMetadataWhereInput
-  composition: CompositionStructureNodeWhereInput
-}
-
-type _Video implements IData & _IContent & _IMedia & _IVideo {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-}
-
-type _VideoAutocomplete {
-  _metadata: IContentMetadataAutocomplete
-}
-
-type _VideoFacet {
-  _metadata: IContentMetadataFacet
-}
-
-input _VideoOrderByInput {
-  _ranking: Ranking
-  _modified: OrderBy
-  _minimumScore: Float
-  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
-  _semanticWeight: Float
-  _metadata: IContentMetadataOrderByInput
-}
-
-type _VideoOutput {
-  items: [_IVideo]
-  item: _IVideo
-  cursor: String
-  total(all: Boolean): Int
-  facets: _VideoFacet
-  autocomplete: _VideoAutocomplete
-}
-
-input _VideoWhereInput {
-  _and: [_VideoWhereInput]
-  _or: [_VideoWhereInput]
-  _not: [_VideoWhereInput]
-  _fulltext: SearchableStringFilterInput
-  _modified: DateFilterInput
-  _metadata: IContentMetadataWhereInput
-}
-
-type ArticlePage implements IData & _IContent & _IPage {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-  Body: SearchableRichText
+  ContentLink: ContentModelReference
+  Name(highlight: HighlightOptions): String
+  Language: ContentLanguageModel
+  ExistingLanguages: [ContentLanguageModel]
+  MasterLanguage: ContentLanguageModel
+  ContentType: [String]
+  ParentLink: ContentModelReference
+  RouteSegment: String
+  Url: String
+  Changed: Date
+  Created: Date
+  StartPublish: Date
+  StopPublish: Date
+  Saved: Date
+  Status: String
+  Ancestors: [String]
+  IsCommonDraft: Bool
+  RelativePath: String
+  Shortcut: String
+  SimpleAddress: String
+  _concreteType: String
+  SiteId: String
+  _sortOrder: Int
+  Category: [CategoryModel]
+  Body(highlight: HighlightOptions): String
 }
 
 type ArticlePageAutocomplete {
-  _metadata: IContentMetadataAutocomplete
+  ContentLink: ContentModelReferenceAutocomplete
+  Language: ContentLanguageModelAutocomplete
+  ExistingLanguages: ContentLanguageModelAutocomplete
+  MasterLanguage: ContentLanguageModelAutocomplete
+  ContentType(value: String! limit: Int! = 10): [String]
+  ParentLink: ContentModelReferenceAutocomplete
+  RouteSegment(value: String! limit: Int! = 10): [String]
+  Url(value: String! limit: Int! = 10): [String]
+  Status(value: String! limit: Int! = 10): [String]
+  Ancestors(value: String! limit: Int! = 10): [String]
+  RelativePath(value: String! limit: Int! = 10): [String]
+  Shortcut(value: String! limit: Int! = 10): [String]
+  SimpleAddress(value: String! limit: Int! = 10): [String]
+  _concreteType(value: String! limit: Int! = 10): [String]
+  SiteId(value: String! limit: Int! = 10): [String]
+  Category: CategoryModelAutocomplete
 }
 
 type ArticlePageFacet {
-  _metadata: IContentMetadataFacet
-  Body: SearchableRichTextFacet
+  ContentLink: ContentModelReferenceFacet
+  Name(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Language: ContentLanguageModelFacet
+  ExistingLanguages: ContentLanguageModelFacet
+  MasterLanguage: ContentLanguageModelFacet
+  ContentType(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  ParentLink: ContentModelReferenceFacet
+  RouteSegment(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Url(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Changed(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  Created(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  StartPublish(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  StopPublish(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  Saved(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  Status(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Ancestors(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  IsCommonDraft(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  RelativePath(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Shortcut(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  SimpleAddress(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  _concreteType(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  SiteId(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  _sortOrder(ranges: [RangeFacetsInput] orderType: OrderByFacetType orderBy: OrderBy limit: Int filters: [String!]): [NumberFacet]
+  Category: CategoryModelFacet
+  Body(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
 }
 
 input ArticlePageOrderByInput {
@@ -595,8 +92,31 @@ input ArticlePageOrderByInput {
   _minimumScore: Float
   "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
   _semanticWeight: Float
-  _metadata: IContentMetadataOrderByInput
-  Body: SearchableRichTextOrderByInput
+  ContentLink: ContentModelReferenceOrderByInput
+  Name: OrderBy
+  Language: ContentLanguageModelOrderByInput
+  ExistingLanguages: ContentLanguageModelOrderByInput
+  MasterLanguage: ContentLanguageModelOrderByInput
+  ContentType: OrderBy
+  ParentLink: ContentModelReferenceOrderByInput
+  RouteSegment: OrderBy
+  Url: OrderBy
+  Changed: OrderBy
+  Created: OrderBy
+  StartPublish: OrderBy
+  StopPublish: OrderBy
+  Saved: OrderBy
+  Status: OrderBy
+  Ancestors: OrderBy
+  IsCommonDraft: OrderBy
+  RelativePath: OrderBy
+  Shortcut: OrderBy
+  SimpleAddress: OrderBy
+  _concreteType: OrderBy
+  SiteId: OrderBy
+  _sortOrder: OrderBy
+  Category: CategoryModelOrderByInput
+  Body: OrderBy
 }
 
 type ArticlePageOutput {
@@ -614,281 +134,341 @@ input ArticlePageWhereInput {
   _not: [ArticlePageWhereInput]
   _fulltext: SearchableStringFilterInput
   _modified: DateFilterInput
-  _metadata: IContentMetadataWhereInput
-  Body: SearchableRichTextWhereInput
-}
-
-type BlankExperience implements IData & _IContent & _IPage & _IExperience {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-  composition: CompositionStructureNode
-}
-
-type BlankExperienceAutocomplete {
-  _metadata: IContentMetadataAutocomplete
-  composition: CompositionStructureNodeAutocomplete
-}
-
-type BlankExperienceFacet {
-  _metadata: IContentMetadataFacet
-  composition: CompositionStructureNodeFacet
-}
-
-input BlankExperienceOrderByInput {
-  _ranking: Ranking
-  _modified: OrderBy
-  _minimumScore: Float
-  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
-  _semanticWeight: Float
-  _metadata: IContentMetadataOrderByInput
-  composition: CompositionStructureNodeOrderByInput
-}
-
-type BlankExperienceOutput {
-  items: [BlankExperience]
-  item: BlankExperience
-  cursor: String
-  total(all: Boolean): Int
-  facets: BlankExperienceFacet
-  autocomplete: BlankExperienceAutocomplete
-}
-
-input BlankExperienceWhereInput {
-  _and: [BlankExperienceWhereInput]
-  _or: [BlankExperienceWhereInput]
-  _not: [BlankExperienceWhereInput]
-  _fulltext: SearchableStringFilterInput
-  _modified: DateFilterInput
-  _metadata: IContentMetadataWhereInput
-  composition: CompositionStructureNodeWhereInput
-}
-
-type BlankSection implements IData & _IContent & _IComponent & _ISection {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-  composition: CompositionStructureNode
-}
-
-type BlankSectionAutocomplete {
-  _metadata: IContentMetadataAutocomplete
-  composition: CompositionStructureNodeAutocomplete
-}
-
-type BlankSectionFacet {
-  _metadata: IContentMetadataFacet
-  composition: CompositionStructureNodeFacet
-}
-
-input BlankSectionOrderByInput {
-  _ranking: Ranking
-  _modified: OrderBy
-  _minimumScore: Float
-  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
-  _semanticWeight: Float
-  _metadata: IContentMetadataOrderByInput
-  composition: CompositionStructureNodeOrderByInput
-}
-
-type BlankSectionOutput {
-  items: [BlankSection]
-  item: BlankSection
-  cursor: String
-  total(all: Boolean): Int
-  facets: BlankSectionFacet
-  autocomplete: BlankSectionAutocomplete
-}
-
-input BlankSectionWhereInput {
-  _and: [BlankSectionWhereInput]
-  _or: [BlankSectionWhereInput]
-  _not: [BlankSectionWhereInput]
-  _fulltext: SearchableStringFilterInput
-  _modified: DateFilterInput
-  _metadata: IContentMetadataWhereInput
-  composition: CompositionStructureNodeWhereInput
+  ContentLink: ContentModelReferenceWhereInput
+  Name: SearchableStringFilterInput
+  Language: ContentLanguageModelWhereInput
+  ExistingLanguages: ContentLanguageModelWhereInput
+  MasterLanguage: ContentLanguageModelWhereInput
+  ContentType: StringFilterInput
+  ParentLink: ContentModelReferenceWhereInput
+  RouteSegment: StringFilterInput
+  Url: StringFilterInput
+  Changed: DateFilterInput
+  Created: DateFilterInput
+  StartPublish: DateFilterInput
+  StopPublish: DateFilterInput
+  Saved: DateFilterInput
+  Status: StringFilterInput
+  Ancestors: StringFilterInput
+  IsCommonDraft: BoolFilterInput
+  RelativePath: StringFilterInput
+  Shortcut: StringFilterInput
+  SimpleAddress: StringFilterInput
+  _concreteType: StringFilterInput
+  SiteId: StringFilterInput
+  _sortOrder: IntFilterInput
+  Category: CategoryModelWhereInput
+  Body: SearchableStringFilterInput
 }
 
 scalar Bool
 
-type CompositionComponentNode implements ICompositionNode & ICompositionComponentNode {
-  type: String
-  nodeType: String
-  layoutType: String
-  displayName: String
-  key: String
-  displayTemplateKey: String
-  displaySettings: [CompositionDisplaySetting]
-  component: _IComponent
+input BoolFilterInput {
+  "`exist` matches results that have this field."
+  exist: Boolean
+  "`eq` matches on an exact value, but the value is case-insensitive."
+  eq: Boolean
+  "`not_eq` retrieves results not matching with an exact (but case-insensitive) value."
+  notEq: Boolean
+  "`boost` influences the weight of a field by boosting a match with a number (default: 1) — counts more towards the eventual relevance score which can be projected with `_score` — at query time. Note that `boost` cannot be a negative number."
+  boost: Int
 }
 
-type CompositionDisplaySetting {
-  key: String
-  value: String
+type CategoryModel {
+  Id: Int
+  Name: String
+  Description: String
 }
 
-type CompositionDisplaySettingAutocomplete {
-  key(value: String! limit: Int! = 10): [String]
-  value(value: String! limit: Int! = 10): [String]
+type CategoryModelAutocomplete {
+  Name(value: String! limit: Int! = 10): [String]
+  Description(value: String! limit: Int! = 10): [String]
 }
 
-type CompositionDisplaySettingFacet {
-  key(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  value(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+type CategoryModelFacet {
+  Id(ranges: [RangeFacetsInput] orderType: OrderByFacetType orderBy: OrderBy limit: Int filters: [String!]): [NumberFacet]
+  Name(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Description(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
 }
 
-input CompositionDisplaySettingOrderByInput {
-  key: OrderBy
-  value: OrderBy
+input CategoryModelOrderByInput {
+  Id: OrderBy
+  Name: OrderBy
+  Description: OrderBy
 }
 
-input CompositionDisplaySettingWhereInput {
-  key: StringFilterInput
-  value: StringFilterInput
+input CategoryModelWhereInput {
+  Id: IntFilterInput
+  Name: StringFilterInput
+  Description: StringFilterInput
 }
 
-type CompositionNode implements ICompositionNode {
-  type: String
-  nodeType: String
-  layoutType: String
-  displayName: String
-  key: String
-  displayTemplateKey: String
-  displaySettings: [CompositionDisplaySetting]
+type Content implements IData & IContent {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  ContentLink: ContentModelReference
+  Name(highlight: HighlightOptions): String
+  Language: ContentLanguageModel
+  ExistingLanguages: [ContentLanguageModel]
+  MasterLanguage: ContentLanguageModel
+  ContentType: [String]
+  ParentLink: ContentModelReference
+  RouteSegment: String
+  Url: String
+  Changed: Date
+  Created: Date
+  StartPublish: Date
+  StopPublish: Date
+  Saved: Date
+  Status: String
+  Ancestors: [String]
+  IsCommonDraft: Bool
+  RelativePath: String
+  Shortcut: String
+  SimpleAddress: String
+  _concreteType: String
+  SiteId: String
+  _sortOrder: Int
 }
 
-type CompositionStructureNode implements ICompositionNode & ICompositionStructureNode {
-  type: String
-  nodeType: String
-  layoutType: String
-  displayName: String
-  key: String
-  displayTemplateKey: String
-  displaySettings: [CompositionDisplaySetting]
-  nodes: [ICompositionNode]
-  component: _IComponent
+type ContentAutocomplete {
+  ContentLink: ContentModelReferenceAutocomplete
+  Language: ContentLanguageModelAutocomplete
+  ExistingLanguages: ContentLanguageModelAutocomplete
+  MasterLanguage: ContentLanguageModelAutocomplete
+  ContentType(value: String! limit: Int! = 10): [String]
+  ParentLink: ContentModelReferenceAutocomplete
+  RouteSegment(value: String! limit: Int! = 10): [String]
+  Url(value: String! limit: Int! = 10): [String]
+  Status(value: String! limit: Int! = 10): [String]
+  Ancestors(value: String! limit: Int! = 10): [String]
+  RelativePath(value: String! limit: Int! = 10): [String]
+  Shortcut(value: String! limit: Int! = 10): [String]
+  SimpleAddress(value: String! limit: Int! = 10): [String]
+  _concreteType(value: String! limit: Int! = 10): [String]
+  SiteId(value: String! limit: Int! = 10): [String]
 }
 
-type CompositionStructureNodeAutocomplete {
-  type(value: String! limit: Int! = 10): [String]
-  nodeType(value: String! limit: Int! = 10): [String]
-  layoutType(value: String! limit: Int! = 10): [String]
-  displayName(value: String! limit: Int! = 10): [String]
-  key(value: String! limit: Int! = 10): [String]
-  displayTemplateKey(value: String! limit: Int! = 10): [String]
-  displaySettings: CompositionDisplaySettingAutocomplete
-  nodes: ICompositionNodeAutocomplete
+type ContentFacet {
+  ContentLink: ContentModelReferenceFacet
+  Name(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Language: ContentLanguageModelFacet
+  ExistingLanguages: ContentLanguageModelFacet
+  MasterLanguage: ContentLanguageModelFacet
+  ContentType(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  ParentLink: ContentModelReferenceFacet
+  RouteSegment(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Url(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Changed(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  Created(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  StartPublish(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  StopPublish(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  Saved(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  Status(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Ancestors(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  IsCommonDraft(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  RelativePath(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Shortcut(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  SimpleAddress(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  _concreteType(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  SiteId(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  _sortOrder(ranges: [RangeFacetsInput] orderType: OrderByFacetType orderBy: OrderBy limit: Int filters: [String!]): [NumberFacet]
 }
 
-type CompositionStructureNodeFacet {
-  type(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  nodeType(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  layoutType(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  displayName(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  key(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  displayTemplateKey(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  displaySettings: CompositionDisplaySettingFacet
-  nodes: ICompositionNodeFacet
-  component: _IComponentFacet
+type ContentLanguageModel {
+  Link: String
+  DisplayName: String
+  Name: String
 }
 
-input CompositionStructureNodeOrderByInput {
-  type: OrderBy
-  nodeType: OrderBy
-  layoutType: OrderBy
-  displayName: OrderBy
-  key: OrderBy
-  displayTemplateKey: OrderBy
-  displaySettings: CompositionDisplaySettingOrderByInput
-  nodes: ICompositionNodeOrderByInput
-  component: _IComponentOrderByInput
+type ContentLanguageModelAutocomplete {
+  Link(value: String! limit: Int! = 10): [String]
+  DisplayName(value: String! limit: Int! = 10): [String]
+  Name(value: String! limit: Int! = 10): [String]
 }
 
-input CompositionStructureNodeWhereInput {
-  type: StringFilterInput
-  nodeType: StringFilterInput
-  layoutType: StringFilterInput
-  displayName: StringFilterInput
-  key: StringFilterInput
-  displayTemplateKey: StringFilterInput
-  displaySettings: CompositionDisplaySettingWhereInput
-  nodes: ICompositionNodeWhereInput
-  component: _IComponentWhereInput
+type ContentLanguageModelFacet {
+  Link(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  DisplayName(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Name(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
 }
 
-type ContentMetadata implements IContentMetadata {
-  key: String
-  locale: String
-  fallbackForLocale: String
-  version: String
-  displayName(highlight: HighlightOptions): String
-  url: ContentUrl
-  types: [String]
-  published: DateTime
-  status: String
-  changeset: String
-  created: DateTime
-  lastModified: DateTime
-  sortOrder: Int
-  variation: String
+input ContentLanguageModelOrderByInput {
+  Link: OrderBy
+  DisplayName: OrderBy
+  Name: OrderBy
 }
 
-type ContentUrl {
-  type: String
-  default: String
-  hierarchical: String
-  internal: String
-  graph: String
-  base: String
+input ContentLanguageModelWhereInput {
+  Link: StringFilterInput
+  DisplayName: StringFilterInput
+  Name: StringFilterInput
 }
 
-type ContentUrlAutocomplete {
-  type(value: String! limit: Int! = 10): [String]
-  default(value: String! limit: Int! = 10): [String]
-  hierarchical(value: String! limit: Int! = 10): [String]
-  internal(value: String! limit: Int! = 10): [String]
-  graph(value: String! limit: Int! = 10): [String]
-  base(value: String! limit: Int! = 10): [String]
+type ContentModelReference {
+  Id: Int
+  WorkId: Int
+  GuidValue: String
+  ProviderName: String
+  Url: String
+  Language: ContentLanguageModel
+  Expanded: IContent
 }
 
-type ContentUrlFacet {
-  type(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  default(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  hierarchical(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  internal(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  graph(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  base(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+type ContentModelReferenceAutocomplete {
+  GuidValue(value: String! limit: Int! = 10): [String]
+  ProviderName(value: String! limit: Int! = 10): [String]
+  Url(value: String! limit: Int! = 10): [String]
+  Language: ContentLanguageModelAutocomplete
 }
 
-input ContentUrlOrderByInput {
-  type: OrderBy
-  default: OrderBy
-  hierarchical: OrderBy
-  internal: OrderBy
-  graph: OrderBy
-  base: OrderBy
+type ContentModelReferenceFacet {
+  Id(ranges: [RangeFacetsInput] orderType: OrderByFacetType orderBy: OrderBy limit: Int filters: [String!]): [NumberFacet]
+  WorkId(ranges: [RangeFacetsInput] orderType: OrderByFacetType orderBy: OrderBy limit: Int filters: [String!]): [NumberFacet]
+  GuidValue(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  ProviderName(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Url(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Language: ContentLanguageModelFacet
 }
 
-input ContentUrlWhereInput {
-  type: StringFilterInput
-  default: StringFilterInput
-  hierarchical: StringFilterInput
-  internal: StringFilterInput
-  graph: StringFilterInput
-  base: StringFilterInput
+input ContentModelReferenceOrderByInput {
+  Id: OrderBy
+  WorkId: OrderBy
+  GuidValue: OrderBy
+  ProviderName: OrderBy
+  Url: OrderBy
+  Language: ContentLanguageModelOrderByInput
+}
+
+input ContentModelReferenceWhereInput {
+  Id: IntFilterInput
+  WorkId: IntFilterInput
+  GuidValue: StringFilterInput
+  ProviderName: StringFilterInput
+  Url: StringFilterInput
+  Language: ContentLanguageModelWhereInput
+}
+
+input ContentOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+  ContentLink: ContentModelReferenceOrderByInput
+  Name: OrderBy
+  Language: ContentLanguageModelOrderByInput
+  ExistingLanguages: ContentLanguageModelOrderByInput
+  MasterLanguage: ContentLanguageModelOrderByInput
+  ContentType: OrderBy
+  ParentLink: ContentModelReferenceOrderByInput
+  RouteSegment: OrderBy
+  Url: OrderBy
+  Changed: OrderBy
+  Created: OrderBy
+  StartPublish: OrderBy
+  StopPublish: OrderBy
+  Saved: OrderBy
+  Status: OrderBy
+  Ancestors: OrderBy
+  IsCommonDraft: OrderBy
+  RelativePath: OrderBy
+  Shortcut: OrderBy
+  SimpleAddress: OrderBy
+  _concreteType: OrderBy
+  SiteId: OrderBy
+  _sortOrder: OrderBy
+}
+
+type ContentOutput {
+  items: [IContent]
+  item: IContent
+  cursor: String
+  total(all: Boolean): Int
+  facets: ContentFacet
+  autocomplete: ContentAutocomplete
+}
+
+type ContentRootsModel {
+  GlobalAssetsRoot: ContentModelReference
+  StartPage: ContentModelReference
+  SiteAssetsRoot: ContentModelReference
+  ContentAssetsRoot: ContentModelReference
+  RootPage: ContentModelReference
+  WasteBasket: ContentModelReference
+}
+
+type ContentRootsModelAutocomplete {
+  GlobalAssetsRoot: ContentModelReferenceAutocomplete
+  StartPage: ContentModelReferenceAutocomplete
+  SiteAssetsRoot: ContentModelReferenceAutocomplete
+  ContentAssetsRoot: ContentModelReferenceAutocomplete
+  RootPage: ContentModelReferenceAutocomplete
+  WasteBasket: ContentModelReferenceAutocomplete
+}
+
+type ContentRootsModelFacet {
+  GlobalAssetsRoot: ContentModelReferenceFacet
+  StartPage: ContentModelReferenceFacet
+  SiteAssetsRoot: ContentModelReferenceFacet
+  ContentAssetsRoot: ContentModelReferenceFacet
+  RootPage: ContentModelReferenceFacet
+  WasteBasket: ContentModelReferenceFacet
+}
+
+input ContentRootsModelOrderByInput {
+  GlobalAssetsRoot: ContentModelReferenceOrderByInput
+  StartPage: ContentModelReferenceOrderByInput
+  SiteAssetsRoot: ContentModelReferenceOrderByInput
+  ContentAssetsRoot: ContentModelReferenceOrderByInput
+  RootPage: ContentModelReferenceOrderByInput
+  WasteBasket: ContentModelReferenceOrderByInput
+}
+
+input ContentRootsModelWhereInput {
+  GlobalAssetsRoot: ContentModelReferenceWhereInput
+  StartPage: ContentModelReferenceWhereInput
+  SiteAssetsRoot: ContentModelReferenceWhereInput
+  ContentAssetsRoot: ContentModelReferenceWhereInput
+  RootPage: ContentModelReferenceWhereInput
+  WasteBasket: ContentModelReferenceWhereInput
+}
+
+input ContentWhereInput {
+  _and: [ContentWhereInput]
+  _or: [ContentWhereInput]
+  _not: [ContentWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+  ContentLink: ContentModelReferenceWhereInput
+  Name: SearchableStringFilterInput
+  Language: ContentLanguageModelWhereInput
+  ExistingLanguages: ContentLanguageModelWhereInput
+  MasterLanguage: ContentLanguageModelWhereInput
+  ContentType: StringFilterInput
+  ParentLink: ContentModelReferenceWhereInput
+  RouteSegment: StringFilterInput
+  Url: StringFilterInput
+  Changed: DateFilterInput
+  Created: DateFilterInput
+  StartPublish: DateFilterInput
+  StopPublish: DateFilterInput
+  Saved: DateFilterInput
+  Status: StringFilterInput
+  Ancestors: StringFilterInput
+  IsCommonDraft: BoolFilterInput
+  RelativePath: StringFilterInput
+  Shortcut: StringFilterInput
+  SimpleAddress: StringFilterInput
+  _concreteType: StringFilterInput
+  SiteId: StringFilterInput
+  _sortOrder: IntFilterInput
 }
 
 type Data implements IData {
@@ -962,8 +542,6 @@ input DateFilterInput {
   decay: Decay
 }
 
-scalar DateTime
-
 "Decay influences the weight of the score based on field values with a decay function"
 input Decay {
   origin: Date
@@ -984,53 +562,6 @@ enum FactorModifier {
   RECIPROCAL
 }
 
-type GenericMedia implements IData & _IContent & _IMedia {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-}
-
-type GenericMediaAutocomplete {
-  _metadata: IContentMetadataAutocomplete
-}
-
-type GenericMediaFacet {
-  _metadata: IContentMetadataFacet
-}
-
-input GenericMediaOrderByInput {
-  _ranking: Ranking
-  _modified: OrderBy
-  _minimumScore: Float
-  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
-  _semanticWeight: Float
-  _metadata: IContentMetadataOrderByInput
-}
-
-type GenericMediaOutput {
-  items: [GenericMedia]
-  item: GenericMedia
-  cursor: String
-  total(all: Boolean): Int
-  facets: GenericMediaFacet
-  autocomplete: GenericMediaAutocomplete
-}
-
-input GenericMediaWhereInput {
-  _and: [GenericMediaWhereInput]
-  _or: [GenericMediaWhereInput]
-  _not: [GenericMediaWhereInput]
-  _fulltext: SearchableStringFilterInput
-  _modified: DateFilterInput
-  _metadata: IContentMetadataWhereInput
-}
-
 "Options for highlighting"
 input HighlightOptions {
   enabled: Boolean
@@ -1038,7 +569,7 @@ input HighlightOptions {
   endToken: String
 }
 
-type HomeType implements IData & _IContent & _IPage {
+type HomeType implements IData & IContent {
   _children: QueryRef @deprecated(reason: "Use `_link` field instead")
   _link(type: LinkTypes): QueryRef
   _deleted: Bool
@@ -1047,15 +578,76 @@ type HomeType implements IData & _IContent & _IPage {
   _score: Float
   _id: String
   _track: String
-  _metadata: IContentMetadata
+  ContentLink: ContentModelReference
+  Name(highlight: HighlightOptions): String
+  Language: ContentLanguageModel
+  ExistingLanguages: [ContentLanguageModel]
+  MasterLanguage: ContentLanguageModel
+  ContentType: [String]
+  ParentLink: ContentModelReference
+  RouteSegment: String
+  Url: String
+  Changed: Date
+  Created: Date
+  StartPublish: Date
+  StopPublish: Date
+  Saved: Date
+  Status: String
+  Ancestors: [String]
+  IsCommonDraft: Bool
+  RelativePath: String
+  Shortcut: String
+  SimpleAddress: String
+  _concreteType: String
+  SiteId: String
+  _sortOrder: Int
+  Category: [CategoryModel]
 }
 
 type HomeTypeAutocomplete {
-  _metadata: IContentMetadataAutocomplete
+  ContentLink: ContentModelReferenceAutocomplete
+  Language: ContentLanguageModelAutocomplete
+  ExistingLanguages: ContentLanguageModelAutocomplete
+  MasterLanguage: ContentLanguageModelAutocomplete
+  ContentType(value: String! limit: Int! = 10): [String]
+  ParentLink: ContentModelReferenceAutocomplete
+  RouteSegment(value: String! limit: Int! = 10): [String]
+  Url(value: String! limit: Int! = 10): [String]
+  Status(value: String! limit: Int! = 10): [String]
+  Ancestors(value: String! limit: Int! = 10): [String]
+  RelativePath(value: String! limit: Int! = 10): [String]
+  Shortcut(value: String! limit: Int! = 10): [String]
+  SimpleAddress(value: String! limit: Int! = 10): [String]
+  _concreteType(value: String! limit: Int! = 10): [String]
+  SiteId(value: String! limit: Int! = 10): [String]
+  Category: CategoryModelAutocomplete
 }
 
 type HomeTypeFacet {
-  _metadata: IContentMetadataFacet
+  ContentLink: ContentModelReferenceFacet
+  Name(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Language: ContentLanguageModelFacet
+  ExistingLanguages: ContentLanguageModelFacet
+  MasterLanguage: ContentLanguageModelFacet
+  ContentType(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  ParentLink: ContentModelReferenceFacet
+  RouteSegment(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Url(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Changed(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  Created(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  StartPublish(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  StopPublish(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  Saved(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  Status(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Ancestors(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  IsCommonDraft(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  RelativePath(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Shortcut(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  SimpleAddress(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  _concreteType(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  SiteId(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  _sortOrder(ranges: [RangeFacetsInput] orderType: OrderByFacetType orderBy: OrderBy limit: Int filters: [String!]): [NumberFacet]
+  Category: CategoryModelFacet
 }
 
 input HomeTypeOrderByInput {
@@ -1064,7 +656,30 @@ input HomeTypeOrderByInput {
   _minimumScore: Float
   "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
   _semanticWeight: Float
-  _metadata: IContentMetadataOrderByInput
+  ContentLink: ContentModelReferenceOrderByInput
+  Name: OrderBy
+  Language: ContentLanguageModelOrderByInput
+  ExistingLanguages: ContentLanguageModelOrderByInput
+  MasterLanguage: ContentLanguageModelOrderByInput
+  ContentType: OrderBy
+  ParentLink: ContentModelReferenceOrderByInput
+  RouteSegment: OrderBy
+  Url: OrderBy
+  Changed: OrderBy
+  Created: OrderBy
+  StartPublish: OrderBy
+  StopPublish: OrderBy
+  Saved: OrderBy
+  Status: OrderBy
+  Ancestors: OrderBy
+  IsCommonDraft: OrderBy
+  RelativePath: OrderBy
+  Shortcut: OrderBy
+  SimpleAddress: OrderBy
+  _concreteType: OrderBy
+  SiteId: OrderBy
+  _sortOrder: OrderBy
+  Category: CategoryModelOrderByInput
 }
 
 type HomeTypeOutput {
@@ -1082,160 +697,94 @@ input HomeTypeWhereInput {
   _not: [HomeTypeWhereInput]
   _fulltext: SearchableStringFilterInput
   _modified: DateFilterInput
-  _metadata: IContentMetadataWhereInput
+  ContentLink: ContentModelReferenceWhereInput
+  Name: SearchableStringFilterInput
+  Language: ContentLanguageModelWhereInput
+  ExistingLanguages: ContentLanguageModelWhereInput
+  MasterLanguage: ContentLanguageModelWhereInput
+  ContentType: StringFilterInput
+  ParentLink: ContentModelReferenceWhereInput
+  RouteSegment: StringFilterInput
+  Url: StringFilterInput
+  Changed: DateFilterInput
+  Created: DateFilterInput
+  StartPublish: DateFilterInput
+  StopPublish: DateFilterInput
+  Saved: DateFilterInput
+  Status: StringFilterInput
+  Ancestors: StringFilterInput
+  IsCommonDraft: BoolFilterInput
+  RelativePath: StringFilterInput
+  Shortcut: StringFilterInput
+  SimpleAddress: StringFilterInput
+  _concreteType: StringFilterInput
+  SiteId: StringFilterInput
+  _sortOrder: IntFilterInput
+  Category: CategoryModelWhereInput
 }
 
-interface ICompositionComponentNode {
-  type: String
-  nodeType: String
-  layoutType: String
-  displayName: String
-  key: String
-  displayTemplateKey: String
-  displaySettings: [CompositionDisplaySetting]
-  component: _IComponent
+type HostDefinitionModel {
+  Name: String
+  Type: String
+  Language: ContentLanguageModel
 }
 
-interface ICompositionNode {
-  type: String
-  nodeType: String
-  layoutType: String
-  displayName: String
-  key: String
-  displayTemplateKey: String
-  displaySettings: [CompositionDisplaySetting]
+type HostDefinitionModelAutocomplete {
+  Name(value: String! limit: Int! = 10): [String]
+  Type(value: String! limit: Int! = 10): [String]
+  Language: ContentLanguageModelAutocomplete
 }
 
-type ICompositionNodeAutocomplete {
-  type(value: String! limit: Int! = 10): [String]
-  nodeType(value: String! limit: Int! = 10): [String]
-  layoutType(value: String! limit: Int! = 10): [String]
-  displayName(value: String! limit: Int! = 10): [String]
-  key(value: String! limit: Int! = 10): [String]
-  displayTemplateKey(value: String! limit: Int! = 10): [String]
-  displaySettings: CompositionDisplaySettingAutocomplete
+type HostDefinitionModelFacet {
+  Name(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Type(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Language: ContentLanguageModelFacet
 }
 
-type ICompositionNodeFacet {
-  type(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  nodeType(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  layoutType(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  displayName(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  key(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  displayTemplateKey(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  displaySettings: CompositionDisplaySettingFacet
+input HostDefinitionModelOrderByInput {
+  Name: OrderBy
+  Type: OrderBy
+  Language: ContentLanguageModelOrderByInput
 }
 
-input ICompositionNodeOrderByInput {
-  type: OrderBy
-  nodeType: OrderBy
-  layoutType: OrderBy
-  displayName: OrderBy
-  key: OrderBy
-  displayTemplateKey: OrderBy
-  displaySettings: CompositionDisplaySettingOrderByInput
+input HostDefinitionModelWhereInput {
+  Name: StringFilterInput
+  Type: StringFilterInput
+  Language: ContentLanguageModelWhereInput
 }
 
-input ICompositionNodeWhereInput {
-  type: StringFilterInput
-  nodeType: StringFilterInput
-  layoutType: StringFilterInput
-  displayName: StringFilterInput
-  key: StringFilterInput
-  displayTemplateKey: StringFilterInput
-  displaySettings: CompositionDisplaySettingWhereInput
-}
-
-interface ICompositionStructureNode {
-  type: String
-  nodeType: String
-  layoutType: String
-  displayName: String
-  key: String
-  displayTemplateKey: String
-  displaySettings: [CompositionDisplaySetting]
-  nodes: [ICompositionNode]
-  component: _IComponent
-}
-
-interface IContentMetadata {
-  key: String
-  locale: String
-  fallbackForLocale: String
-  version: String
-  displayName(highlight: HighlightOptions): String
-  url: ContentUrl
-  types: [String]
-  published: DateTime
-  status: String
-  changeset: String
-  created: DateTime
-  lastModified: DateTime
-  sortOrder: Int
-  variation: String
-}
-
-type IContentMetadataAutocomplete {
-  key(value: String! limit: Int! = 10): [String]
-  locale(value: String! limit: Int! = 10): [String]
-  fallbackForLocale(value: String! limit: Int! = 10): [String]
-  version(value: String! limit: Int! = 10): [String]
-  url: ContentUrlAutocomplete
-  types(value: String! limit: Int! = 10): [String]
-  status(value: String! limit: Int! = 10): [String]
-  changeset(value: String! limit: Int! = 10): [String]
-  variation(value: String! limit: Int! = 10): [String]
-}
-
-type IContentMetadataFacet {
-  key(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  locale(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  fallbackForLocale(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  version(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  displayName(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  url: ContentUrlFacet
-  types(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  published(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
-  status(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  changeset(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-  created(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
-  lastModified(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
-  sortOrder(ranges: [RangeFacetsInput] orderType: OrderByFacetType orderBy: OrderBy limit: Int filters: [String!]): [NumberFacet]
-  variation(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-}
-
-input IContentMetadataOrderByInput {
-  key: OrderBy
-  locale: OrderBy
-  fallbackForLocale: OrderBy
-  version: OrderBy
-  displayName: OrderBy
-  url: ContentUrlOrderByInput
-  types: OrderBy
-  published: OrderBy
-  status: OrderBy
-  changeset: OrderBy
-  created: OrderBy
-  lastModified: OrderBy
-  sortOrder: OrderBy
-  variation: OrderBy
-}
-
-input IContentMetadataWhereInput {
-  key: StringFilterInput
-  locale: StringFilterInput
-  fallbackForLocale: StringFilterInput
-  version: StringFilterInput
-  displayName: SearchableStringFilterInput
-  url: ContentUrlWhereInput
-  types: StringFilterInput
-  published: DateFilterInput
-  status: StringFilterInput
-  changeset: StringFilterInput
-  created: DateFilterInput
-  lastModified: DateFilterInput
-  sortOrder: IntFilterInput
-  variation: StringFilterInput
+interface IContent {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  ContentLink: ContentModelReference
+  Name(highlight: HighlightOptions): String
+  Language: ContentLanguageModel
+  ExistingLanguages: [ContentLanguageModel]
+  MasterLanguage: ContentLanguageModel
+  ContentType: [String]
+  ParentLink: ContentModelReference
+  RouteSegment: String
+  Url: String
+  Changed: Date
+  Created: Date
+  StartPublish: Date
+  StopPublish: Date
+  Saved: Date
+  Status: String
+  Ancestors: [String]
+  IsCommonDraft: Bool
+  RelativePath: String
+  Shortcut: String
+  SimpleAddress: String
+  _concreteType: String
+  SiteId: String
+  _sortOrder: Int
 }
 
 interface IData {
@@ -1247,149 +796,6 @@ interface IData {
   _score: Float
   _id: String
   _track: String
-}
-
-interface IInstanceMetadata {
-  key: String
-  locale: String
-  fallbackForLocale: String
-  version: String
-  displayName(highlight: HighlightOptions): String
-  url: ContentUrl
-  types: [String]
-  published: DateTime
-  status: String
-  changeset: String
-  created: DateTime
-  lastModified: DateTime
-  sortOrder: Int
-  variation: String
-  locales: [String]
-  expired: DateTime
-  container: String
-  owner: String
-  routeSegment: String
-  lastModifiedBy: String
-  path: [String]
-  createdBy: String
-}
-
-interface IItemMetadata {
-  key: String
-  locale: String
-  fallbackForLocale: String
-  version: String
-  displayName(highlight: HighlightOptions): String
-  url: ContentUrl
-  types: [String]
-  published: DateTime
-  status: String
-  changeset: String
-  created: DateTime
-  lastModified: DateTime
-  sortOrder: Int
-  variation: String
-  displayOption: String
-}
-
-type ImageMedia implements IData & _IContent & _IMedia & _IImage {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-}
-
-type ImageMediaAutocomplete {
-  _metadata: IContentMetadataAutocomplete
-}
-
-type ImageMediaFacet {
-  _metadata: IContentMetadataFacet
-}
-
-input ImageMediaOrderByInput {
-  _ranking: Ranking
-  _modified: OrderBy
-  _minimumScore: Float
-  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
-  _semanticWeight: Float
-  _metadata: IContentMetadataOrderByInput
-}
-
-type ImageMediaOutput {
-  items: [ImageMedia]
-  item: ImageMedia
-  cursor: String
-  total(all: Boolean): Int
-  facets: ImageMediaFacet
-  autocomplete: ImageMediaAutocomplete
-}
-
-input ImageMediaWhereInput {
-  _and: [ImageMediaWhereInput]
-  _or: [ImageMediaWhereInput]
-  _not: [ImageMediaWhereInput]
-  _fulltext: SearchableStringFilterInput
-  _modified: DateFilterInput
-  _metadata: IContentMetadataWhereInput
-}
-
-interface IMediaMetadata {
-  key: String
-  locale: String
-  fallbackForLocale: String
-  version: String
-  displayName(highlight: HighlightOptions): String
-  url: ContentUrl
-  types: [String]
-  published: DateTime
-  status: String
-  changeset: String
-  created: DateTime
-  lastModified: DateTime
-  sortOrder: Int
-  variation: String
-  locales: [String]
-  expired: DateTime
-  container: String
-  owner: String
-  routeSegment: String
-  lastModifiedBy: String
-  path: [String]
-  createdBy: String
-  thumbnail: String
-  mimeType: String
-  content(highlight: HighlightOptions): String
-}
-
-type InstanceMetadata implements IContentMetadata & IInstanceMetadata {
-  key: String
-  locale: String
-  fallbackForLocale: String
-  version: String
-  displayName(highlight: HighlightOptions): String
-  url: ContentUrl
-  types: [String]
-  published: DateTime
-  status: String
-  changeset: String
-  created: DateTime
-  lastModified: DateTime
-  sortOrder: Int
-  variation: String
-  locales: [String]
-  expired: DateTime
-  container: String
-  owner: String
-  routeSegment: String
-  lastModifiedBy: String
-  path: [String]
-  createdBy: String
 }
 
 input IntFilterInput {
@@ -1417,75 +823,24 @@ input IntFilterInput {
   factor: NumberFactor
 }
 
-type ItemMetadata implements IContentMetadata & IItemMetadata {
-  key: String
-  locale: String
-  fallbackForLocale: String
-  version: String
-  displayName(highlight: HighlightOptions): String
-  url: ContentUrl
-  types: [String]
-  published: DateTime
-  status: String
-  changeset: String
-  created: DateTime
-  lastModified: DateTime
-  sortOrder: Int
-  variation: String
-  displayOption: String
-}
-
-"The `JSON` scalar type represents JSON values as specified by [ECMA-404](https:\/\/ecma-international.org\/publications-and-standards\/standards\/ecma-404\/)."
-scalar JSON
-
 input LinkConfig {
   from: String
   to: String
 }
 
 enum LinkTypes {
-  "\n| *Direction* | &nbsp; | *Field*     |\n| ----------: | ------ | :---------- |\n| *from*      |        | `_metadata.key` |\n| *to*        |        | `_metadata.container`   |"
+  "\n| *Direction* | &nbsp; | *Field*     |\n| ----------: | ------ | :---------- |\n| *from*      |        | `ContentLink.GuidValue` |\n| *to*        |        | `ParentLink.GuidValue`   |"
   DEFAULT
-  "\n| *Direction* | &nbsp; | *Field*     |\n| ----------: | ------ | :---------- |\n| *from*      |        | `_metadata.key` |\n| *to*        |        | `_metadata.container`   |"
-  ITEMS
-  "\n| *Direction* | &nbsp; | *Field*     |\n| ----------: | ------ | :---------- |\n| *from*      |        | `_metadata.key` |\n| *to*        |        | `_metadata.owner`   |"
-  ASSETS
-  "\n| *Direction* | &nbsp; | *Field*     |\n| ----------: | ------ | :---------- |\n| *from*      |        | `_metadata.path` |\n| *to*        |        | `_metadata.key`   |"
-  PATH
+  "\n| *Direction* | &nbsp; | *Field*     |\n| ----------: | ------ | :---------- |\n| *from*      |        | `ContentLink.GuidValue` |\n| *to*        |        | `ParentLink.GuidValue`   |"
+  CHILDREN
+  "\n| *Direction* | &nbsp; | *Field*     |\n| ----------: | ------ | :---------- |\n| *from*      |        | `Ancestors` |\n| *to*        |        | `ContentLink.GuidValue`   |"
+  ANCESTORS
 }
 
 enum Locales {
   ALL
   NEUTRAL
   en
-}
-
-type MediaMetadata implements IContentMetadata & IInstanceMetadata & IMediaMetadata {
-  key: String
-  locale: String
-  fallbackForLocale: String
-  version: String
-  displayName(highlight: HighlightOptions): String
-  url: ContentUrl
-  types: [String]
-  published: DateTime
-  status: String
-  changeset: String
-  created: DateTime
-  lastModified: DateTime
-  sortOrder: Int
-  variation: String
-  locales: [String]
-  expired: DateTime
-  container: String
-  owner: String
-  routeSegment: String
-  lastModifiedBy: String
-  path: [String]
-  createdBy: String
-  thumbnail: String
-  mimeType: String
-  content(highlight: HighlightOptions): String
 }
 
 type NumberFacet {
@@ -1511,46 +866,20 @@ enum OrderByFacetType {
 
 type Query {
   Data(where: DataWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: DataOrderByInput locale: [system_Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): DataOutput
-  _Content(where: _ContentWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _ContentOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _ContentOutput
-  _Component(where: _ComponentWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _ComponentOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _ComponentOutput
-  _Media(where: _MediaWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _MediaOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _MediaOutput
-  _Page(where: _PageWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _PageOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _PageOutput
-  _Image(where: _ImageWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _ImageOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _ImageOutput
-  _Video(where: _VideoWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _VideoOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _VideoOutput
-  _Folder(where: _FolderWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _FolderOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _FolderOutput
-  _Experience(where: _ExperienceWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _ExperienceOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _ExperienceOutput
-  _Section(where: _SectionWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _SectionOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _SectionOutput
-  BlankSection(where: BlankSectionWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: BlankSectionOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): BlankSectionOutput
-  BlankExperience(where: BlankExperienceWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: BlankExperienceOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): BlankExperienceOutput
+  Content(where: ContentWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: ContentOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): ContentOutput
   ArticlePage(where: ArticlePageWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: ArticlePageOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): ArticlePageOutput
   HomeType(where: HomeTypeWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: HomeTypeOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): HomeTypeOutput
   SearchPage(where: SearchPageWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: SearchPageOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): SearchPageOutput
-  GenericMedia(where: GenericMediaWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: GenericMediaOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): GenericMediaOutput
-  ImageMedia(where: ImageMediaWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: ImageMediaOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): ImageMediaOutput
-  VideoMedia(where: VideoMediaWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: VideoMediaOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): VideoMediaOutput
-  SysContentFolder(where: SysContentFolderWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: SysContentFolderOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): SysContentFolderOutput
+  SiteDefinition(where: SiteDefinitionWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: SiteDefinitionOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): SiteDefinitionOutput
 }
 
 type QueryRef {
   Data(where: DataWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: DataOrderByInput locale: [system_Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): DataOutput
-  _Content(where: _ContentWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _ContentOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _ContentOutput
-  _Component(where: _ComponentWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _ComponentOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _ComponentOutput
-  _Media(where: _MediaWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _MediaOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _MediaOutput
-  _Page(where: _PageWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _PageOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _PageOutput
-  _Image(where: _ImageWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _ImageOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _ImageOutput
-  _Video(where: _VideoWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _VideoOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _VideoOutput
-  _Folder(where: _FolderWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _FolderOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _FolderOutput
-  _Experience(where: _ExperienceWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _ExperienceOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _ExperienceOutput
-  _Section(where: _SectionWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: _SectionOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): _SectionOutput
-  BlankSection(where: BlankSectionWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: BlankSectionOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): BlankSectionOutput
-  BlankExperience(where: BlankExperienceWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: BlankExperienceOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): BlankExperienceOutput
+  Content(where: ContentWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: ContentOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): ContentOutput
   ArticlePage(where: ArticlePageWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: ArticlePageOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): ArticlePageOutput
   HomeType(where: HomeTypeWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: HomeTypeOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): HomeTypeOutput
   SearchPage(where: SearchPageWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: SearchPageOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): SearchPageOutput
-  GenericMedia(where: GenericMediaWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: GenericMediaOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): GenericMediaOutput
-  ImageMedia(where: ImageMediaWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: ImageMediaOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): ImageMediaOutput
-  VideoMedia(where: VideoMediaWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: VideoMediaOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): VideoMediaOutput
-  SysContentFolder(where: SysContentFolderWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: SysContentFolderOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): SysContentFolderOutput
+  SiteDefinition(where: SiteDefinitionWhereInput limit: Int! = 20 skip: Int! = 0 orderBy: SiteDefinitionOrderByInput locale: [Locales] ids: [String] cursor: String variation: VariationInput usePinned: usePinnedInput track: String): SiteDefinitionOutput
 }
 
 input RangeFacetsInput {
@@ -1563,23 +892,6 @@ enum Ranking {
   SEMANTIC
   BOOST_ONLY
   DOC
-}
-
-type SearchableRichText {
-  html(highlight: HighlightOptions): String
-  json: JSON
-}
-
-type SearchableRichTextFacet {
-  html(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
-}
-
-input SearchableRichTextOrderByInput {
-  html: OrderBy
-}
-
-input SearchableRichTextWhereInput {
-  html: SearchableStringFilterInput
 }
 
 input SearchableStringFilterInput {
@@ -1609,7 +921,8 @@ input SearchableStringFilterInput {
   fuzzy: Boolean
 }
 
-type SearchPage implements IData & _IContent & _IPage {
+"Search page with input and results"
+type SearchPage implements IData & IContent {
   _children: QueryRef @deprecated(reason: "Use `_link` field instead")
   _link(type: LinkTypes): QueryRef
   _deleted: Bool
@@ -1618,15 +931,76 @@ type SearchPage implements IData & _IContent & _IPage {
   _score: Float
   _id: String
   _track: String
-  _metadata: IContentMetadata
+  ContentLink: ContentModelReference
+  Name(highlight: HighlightOptions): String
+  Language: ContentLanguageModel
+  ExistingLanguages: [ContentLanguageModel]
+  MasterLanguage: ContentLanguageModel
+  ContentType: [String]
+  ParentLink: ContentModelReference
+  RouteSegment: String
+  Url: String
+  Changed: Date
+  Created: Date
+  StartPublish: Date
+  StopPublish: Date
+  Saved: Date
+  Status: String
+  Ancestors: [String]
+  IsCommonDraft: Bool
+  RelativePath: String
+  Shortcut: String
+  SimpleAddress: String
+  _concreteType: String
+  SiteId: String
+  _sortOrder: Int
+  Category: [CategoryModel]
 }
 
 type SearchPageAutocomplete {
-  _metadata: IContentMetadataAutocomplete
+  ContentLink: ContentModelReferenceAutocomplete
+  Language: ContentLanguageModelAutocomplete
+  ExistingLanguages: ContentLanguageModelAutocomplete
+  MasterLanguage: ContentLanguageModelAutocomplete
+  ContentType(value: String! limit: Int! = 10): [String]
+  ParentLink: ContentModelReferenceAutocomplete
+  RouteSegment(value: String! limit: Int! = 10): [String]
+  Url(value: String! limit: Int! = 10): [String]
+  Status(value: String! limit: Int! = 10): [String]
+  Ancestors(value: String! limit: Int! = 10): [String]
+  RelativePath(value: String! limit: Int! = 10): [String]
+  Shortcut(value: String! limit: Int! = 10): [String]
+  SimpleAddress(value: String! limit: Int! = 10): [String]
+  _concreteType(value: String! limit: Int! = 10): [String]
+  SiteId(value: String! limit: Int! = 10): [String]
+  Category: CategoryModelAutocomplete
 }
 
 type SearchPageFacet {
-  _metadata: IContentMetadataFacet
+  ContentLink: ContentModelReferenceFacet
+  Name(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Language: ContentLanguageModelFacet
+  ExistingLanguages: ContentLanguageModelFacet
+  MasterLanguage: ContentLanguageModelFacet
+  ContentType(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  ParentLink: ContentModelReferenceFacet
+  RouteSegment(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Url(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Changed(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  Created(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  StartPublish(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  StopPublish(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  Saved(value: Int = 1 unit: DateFacetUnit = DAY): [DateFacet]
+  Status(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Ancestors(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  IsCommonDraft(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  RelativePath(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Shortcut(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  SimpleAddress(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  _concreteType(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  SiteId(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  _sortOrder(ranges: [RangeFacetsInput] orderType: OrderByFacetType orderBy: OrderBy limit: Int filters: [String!]): [NumberFacet]
+  Category: CategoryModelFacet
 }
 
 input SearchPageOrderByInput {
@@ -1635,7 +1009,30 @@ input SearchPageOrderByInput {
   _minimumScore: Float
   "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
   _semanticWeight: Float
-  _metadata: IContentMetadataOrderByInput
+  ContentLink: ContentModelReferenceOrderByInput
+  Name: OrderBy
+  Language: ContentLanguageModelOrderByInput
+  ExistingLanguages: ContentLanguageModelOrderByInput
+  MasterLanguage: ContentLanguageModelOrderByInput
+  ContentType: OrderBy
+  ParentLink: ContentModelReferenceOrderByInput
+  RouteSegment: OrderBy
+  Url: OrderBy
+  Changed: OrderBy
+  Created: OrderBy
+  StartPublish: OrderBy
+  StopPublish: OrderBy
+  Saved: OrderBy
+  Status: OrderBy
+  Ancestors: OrderBy
+  IsCommonDraft: OrderBy
+  RelativePath: OrderBy
+  Shortcut: OrderBy
+  SimpleAddress: OrderBy
+  _concreteType: OrderBy
+  SiteId: OrderBy
+  _sortOrder: OrderBy
+  Category: CategoryModelOrderByInput
 }
 
 type SearchPageOutput {
@@ -1653,7 +1050,155 @@ input SearchPageWhereInput {
   _not: [SearchPageWhereInput]
   _fulltext: SearchableStringFilterInput
   _modified: DateFilterInput
-  _metadata: IContentMetadataWhereInput
+  ContentLink: ContentModelReferenceWhereInput
+  Name: SearchableStringFilterInput
+  Language: ContentLanguageModelWhereInput
+  ExistingLanguages: ContentLanguageModelWhereInput
+  MasterLanguage: ContentLanguageModelWhereInput
+  ContentType: StringFilterInput
+  ParentLink: ContentModelReferenceWhereInput
+  RouteSegment: StringFilterInput
+  Url: StringFilterInput
+  Changed: DateFilterInput
+  Created: DateFilterInput
+  StartPublish: DateFilterInput
+  StopPublish: DateFilterInput
+  Saved: DateFilterInput
+  Status: StringFilterInput
+  Ancestors: StringFilterInput
+  IsCommonDraft: BoolFilterInput
+  RelativePath: StringFilterInput
+  Shortcut: StringFilterInput
+  SimpleAddress: StringFilterInput
+  _concreteType: StringFilterInput
+  SiteId: StringFilterInput
+  _sortOrder: IntFilterInput
+  Category: CategoryModelWhereInput
+}
+
+type SiteDefinition implements IData {
+  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
+  _link(type: LinkTypes): QueryRef
+  _deleted: Bool
+  _fulltext(highlight: HighlightOptions): [String]
+  _modified: Date
+  _score: Float
+  _id: String
+  _track: String
+  ContentLink: ContentModelReference
+  ContentType: [String]
+  Status: String
+  Name(highlight: HighlightOptions): String
+  Id: String
+  EditLocation: String
+  Languages: [SiteDefinitionLanguageModel]
+  Hosts: [HostDefinitionModel]
+  ContentRoots: ContentRootsModel
+}
+
+type SiteDefinitionAutocomplete {
+  ContentLink: ContentModelReferenceAutocomplete
+  ContentType(value: String! limit: Int! = 10): [String]
+  Status(value: String! limit: Int! = 10): [String]
+  Id(value: String! limit: Int! = 10): [String]
+  EditLocation(value: String! limit: Int! = 10): [String]
+  Languages: SiteDefinitionLanguageModelAutocomplete
+  Hosts: HostDefinitionModelAutocomplete
+  ContentRoots: ContentRootsModelAutocomplete
+}
+
+type SiteDefinitionFacet {
+  ContentLink: ContentModelReferenceFacet
+  ContentType(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Status(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Name(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Id(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  EditLocation(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Languages: SiteDefinitionLanguageModelFacet
+  Hosts: HostDefinitionModelFacet
+  ContentRoots: ContentRootsModelFacet
+}
+
+type SiteDefinitionLanguageModel {
+  IsMasterLanguage: Bool
+  UrlSegment: String
+  Url: String
+  DisplayName: String
+  Name: String
+}
+
+type SiteDefinitionLanguageModelAutocomplete {
+  UrlSegment(value: String! limit: Int! = 10): [String]
+  Url(value: String! limit: Int! = 10): [String]
+  DisplayName(value: String! limit: Int! = 10): [String]
+  Name(value: String! limit: Int! = 10): [String]
+}
+
+type SiteDefinitionLanguageModelFacet {
+  IsMasterLanguage(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  UrlSegment(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Url(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  DisplayName(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+  Name(orderType: OrderByFacetType = COUNT orderBy: OrderBy = DESC limit: Int! = 10 filters: [String!]): [StringFacet]
+}
+
+input SiteDefinitionLanguageModelOrderByInput {
+  IsMasterLanguage: OrderBy
+  UrlSegment: OrderBy
+  Url: OrderBy
+  DisplayName: OrderBy
+  Name: OrderBy
+}
+
+input SiteDefinitionLanguageModelWhereInput {
+  IsMasterLanguage: BoolFilterInput
+  UrlSegment: StringFilterInput
+  Url: StringFilterInput
+  DisplayName: StringFilterInput
+  Name: StringFilterInput
+}
+
+input SiteDefinitionOrderByInput {
+  _ranking: Ranking
+  _modified: OrderBy
+  _minimumScore: Float
+  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
+  _semanticWeight: Float
+  ContentLink: ContentModelReferenceOrderByInput
+  ContentType: OrderBy
+  Status: OrderBy
+  Name: OrderBy
+  Id: OrderBy
+  EditLocation: OrderBy
+  Languages: SiteDefinitionLanguageModelOrderByInput
+  Hosts: HostDefinitionModelOrderByInput
+  ContentRoots: ContentRootsModelOrderByInput
+}
+
+type SiteDefinitionOutput {
+  items: [SiteDefinition]
+  item: SiteDefinition
+  cursor: String
+  total(all: Boolean): Int
+  facets: SiteDefinitionFacet
+  autocomplete: SiteDefinitionAutocomplete
+}
+
+input SiteDefinitionWhereInput {
+  _and: [SiteDefinitionWhereInput]
+  _or: [SiteDefinitionWhereInput]
+  _not: [SiteDefinitionWhereInput]
+  _fulltext: SearchableStringFilterInput
+  _modified: DateFilterInput
+  ContentLink: ContentModelReferenceWhereInput
+  ContentType: StringFilterInput
+  Status: StringFilterInput
+  Name: SearchableStringFilterInput
+  Id: StringFilterInput
+  EditLocation: StringFilterInput
+  Languages: SiteDefinitionLanguageModelWhereInput
+  Hosts: HostDefinitionModelWhereInput
+  ContentRoots: ContentRootsModelWhereInput
 }
 
 type StringFacet {
@@ -1693,53 +1238,6 @@ enum SynonymSlot {
   TWO
 }
 
-type SysContentFolder implements IData & _IContent & _IFolder {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-}
-
-type SysContentFolderAutocomplete {
-  _metadata: IContentMetadataAutocomplete
-}
-
-type SysContentFolderFacet {
-  _metadata: IContentMetadataFacet
-}
-
-input SysContentFolderOrderByInput {
-  _ranking: Ranking
-  _modified: OrderBy
-  _minimumScore: Float
-  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
-  _semanticWeight: Float
-  _metadata: IContentMetadataOrderByInput
-}
-
-type SysContentFolderOutput {
-  items: [SysContentFolder]
-  item: SysContentFolder
-  cursor: String
-  total(all: Boolean): Int
-  facets: SysContentFolderFacet
-  autocomplete: SysContentFolderAutocomplete
-}
-
-input SysContentFolderWhereInput {
-  _and: [SysContentFolderWhereInput]
-  _or: [SysContentFolderWhereInput]
-  _not: [SysContentFolderWhereInput]
-  _fulltext: SearchableStringFilterInput
-  _modified: DateFilterInput
-  _metadata: IContentMetadataWhereInput
-}
-
 enum system_Locales {
   ALL
   NEUTRAL
@@ -1760,53 +1258,6 @@ input VariationInput {
   include: VariationIncludeMode
   value: [String]
   includeOriginal: Boolean
-}
-
-type VideoMedia implements IData & _IContent & _IMedia & _IVideo {
-  _children: QueryRef @deprecated(reason: "Use `_link` field instead")
-  _link(type: LinkTypes): QueryRef
-  _deleted: Bool
-  _fulltext(highlight: HighlightOptions): [String]
-  _modified: Date
-  _score: Float
-  _id: String
-  _track: String
-  _metadata: IContentMetadata
-}
-
-type VideoMediaAutocomplete {
-  _metadata: IContentMetadataAutocomplete
-}
-
-type VideoMediaFacet {
-  _metadata: IContentMetadataFacet
-}
-
-input VideoMediaOrderByInput {
-  _ranking: Ranking
-  _modified: OrderBy
-  _minimumScore: Float
-  "The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled."
-  _semanticWeight: Float
-  _metadata: IContentMetadataOrderByInput
-}
-
-type VideoMediaOutput {
-  items: [VideoMedia]
-  item: VideoMedia
-  cursor: String
-  total(all: Boolean): Int
-  facets: VideoMediaFacet
-  autocomplete: VideoMediaAutocomplete
-}
-
-input VideoMediaWhereInput {
-  _and: [VideoMediaWhereInput]
-  _or: [VideoMediaWhereInput]
-  _not: [VideoMediaWhereInput]
-  _fulltext: SearchableStringFilterInput
-  _modified: DateFilterInput
-  _metadata: IContentMetadataWhereInput
 }
 
 directive @config(source: String searchable: Boolean index: Boolean esType: String link: LinkConfig preset: String) on FIELD_DEFINITION | ENUM_VALUE

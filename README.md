@@ -1,46 +1,35 @@
-# Empty CMS template
+# Find to Graph
+An example Optimizely PaaS CMS 12 site showing the steps to convert from Search & Navigation to Optimizely Graph. 
 
-## How to run
-
-Chose one of the following options to get started. 
-
-### Windows
-
-Prerequisities
-- .NET SDK 8+
-- SQL Server 2016 Express LocalDB (or later)
+I started with an empty PaaS site. I created it with: 
 
 ```bash
-$ dotnet run
+$ dotnet new epi-cms-empty
 ````
 
-### Any OS with Docker
+My database was on SQL server running in a Docker container. It's not the simplest system. Any database can work. Start with an empty database. Put the ConnectionString in appsettings.Development.json
+That file should be in the .gitignore file so it doesn't get checked in.
 
-Prerequisities
-- Docker
-- Enable Docker support when applying the template
-- Review the .env file and make changes where necessary to the Docker-related variables
+The site should run at this point. It prompts for an admin user to be created. Since there is no home page, it will show a 404 error.
 
+The admin path is `/episerver/cms/`. Some CMS 12 sites use `/ui/cms/`
+
+Using CoPilot, it didn't take log to create 3 page models with controllers and views. There is a *HomeType* page with a link to a *SearchPage* which searches for *ArticlePage* type pages. Article Pages have a *Body* property which is rich text. The search controller didn't search at this point. 
+
+From the admin interface, I created instances of these pages and 3 Article Pages with content in the Body property. I assigned the HomeType page as the site's start page.
+
+Optimizely used to call Search & Navigation "FIND". All code references still use the word "Find".
+
+Next, I added the NuGet packages for Search & Navigation. 
 ```bash
-$ docker-compose up
-````
+$ dotnet add EPiServer.Find.Cms
+```
 
-> Note that this Docker setup is just configured for local development. Follow this [guide to enable HTTPS](https://github.com/dotnet/dotnet-docker/blob/main/samples/run-aspnetcore-https-development.md).
+I needed to get a demo index for Find. I signed up at https://find.optimizely.com/. I copied the settings from that web site into appsettings.Development.json.
 
-#### Reclaiming Docker Image Space
+In Startup.cs I needed to call `.AddFind()` in the `ConfigureServices` method.
 
-1. Backup the App_Data/\${DB_NAME}.mdf and App_Data/\${DB_NAME}.ldf DB restoration files for safety
-2. Run `docker compose down --rmi all` to remove containers, networks, and images associated with the specific project instance
-3. In the future, run `docker compose up` anytime you want to recreate the images and containers
+The search controller calls FIND and passes the query. Once it gets the responses it calls `GetContentResult()` to get the pages from the database for each result.
 
-### Any OS with external database server
-
-Prerequisities
-- .NET SDK 8+
-- SQL Server 2016 (or later) on a external server, e.g. Azure SQL
-
-Create an empty database on the external database server and update the connection string accordingly.
-
-```bash
-$ dotnet run
-````
+When I ran the site, I noticed \<P\> elements from my rich text were included in the search results. I added code to strip HTML tags from the Body property.
+In general, a site using FIND will follow this pattern. It will get the results from FIND and then get the content from the database. Then it will 
