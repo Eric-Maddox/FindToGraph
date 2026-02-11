@@ -1,5 +1,8 @@
-﻿query articles($query: String) {
-  ArticlePage(where: { _fulltext: { match: $query } }) {
+﻿query articles($searchText: String) {
+  ArticlePage(
+    where: { _fulltext: { match: $searchText } }
+    orderBy: { _ranking: SEMANTIC }
+  ) {
     items {
       Body
     }
