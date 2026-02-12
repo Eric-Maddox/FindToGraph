@@ -4,6 +4,7 @@
   "extensions": {
     "strawberryShake": {
       "name": "GraphQLClient",
+      "comment": "The key in the url below is public. It is not a secret. It is ok to checkin",
       "url": "https://cg.optimizely.com/content/v2?auth=n3nCUREbvDHzkajZjLZmuY1KtS4bR5RhlgXXsnEslceIxnRG",
       "records": {
         "inputs": false,
